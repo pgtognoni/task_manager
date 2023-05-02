@@ -8,18 +8,20 @@ const initialState = {
 }
 
 const taskSlice = createSlice({
-    name: 'task',
+    name: 'taskReducer',
     initialState,
     reducers: {
-        setTask: (state, action) => (state.task = action.payload),
-        setId: (state, action) => (state.id = action.payload),
-        setComplete: (state, action) => (state.complete = action.payload),
-        setEdit: (state, action) => (state.edit = action.payload),
+        setState: (state, action) => {state = action.payload},
+        setTask: (state, action) => {state.task = action.payload},
+        setId: (state, action) => {state.id = action.payload},
+        setComplete: (state, action) => {state.complete = action.payload},
+        setEdit: (state, action) => {state.edit = action.payload},
         setReset: () => initialState
     }
 })
 
 export const {
+    setState,
     setTask,
     setId,
     setComplete, 

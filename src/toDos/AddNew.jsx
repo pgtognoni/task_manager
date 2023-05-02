@@ -7,17 +7,19 @@ import { v4 as uuidv4 } from "uuid";
 
 function AddNew() {
 
+    const toDo = useSelector(state => state.task)
     const task = useSelector(state => state.task.task)
+
     const dispatch = useDispatch();
 
-    const handleTaskChange = (task) => {
-        dispatch(setTask(task))
+    const handleTaskChange = (val) => {
+        dispatch(setTask(val))
+        dispatch(setId(uuidv4()))
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(setId(uuidv4()))
-        dispatch(setToDo(task))
+        dispatch(setToDo(toDo))
         dispatch(setReset())
     }
 
@@ -26,7 +28,7 @@ function AddNew() {
         <h2>Add New</h2>
         <form onSubmit={e => handleSubmit(e)}>
             <label htmlFor='task'>
-                <input type='text' name='task' value={task} onChange={e => handleTaskChange(e.target.value)} />
+                <input type='text' name='task' value={task} onChange={e =>  handleTaskChange(e.target.value)} />
             </label>
             <button>Add</button>
         </form>

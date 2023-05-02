@@ -8,8 +8,8 @@ const toDosSlice = createSlice({
     name: 'toDos',
     initialState,
     reducers: {
-        setToDo: (state, action) => state.toDos = state.toDos.push(action.payload),
-        deleteToDo: (state, action) => state.toDos = state.toDos.filter(item => item.id !== action.payload)
+        setToDo: (state, action) => {state.toDos.push(action.payload)},
+        deleteToDo: (state, action) => {state.toDos = state.toDos.filter(item => item.id !== action.payload)}
     }
 })
 
