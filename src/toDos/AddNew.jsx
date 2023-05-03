@@ -1,26 +1,27 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux';
-import { setTask, setId, setReset } from '../reducer/taskReducer';
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { setToDo } from '../reducer/toDosReducer';
 import { v4 as uuidv4 } from "uuid";
 
 
 function AddNew() {
 
-    const toDo = useSelector(state => state.task)
-    const task = useSelector(state => state.task.task)
+    const [ task, setTask ] = useState('')
 
     const dispatch = useDispatch();
 
-    const handleTaskChange = (val) => {
-        dispatch(setTask(val))
-        dispatch(setId(uuidv4()))
-    }
-
     const handleSubmit = (event) => {
+
         event.preventDefault();
+        
+        const toDo = {
+            id: uuidv4(),
+            task: task,
+            complete: false,
+        }
+
         dispatch(setToDo(toDo))
-        dispatch(setReset())
+        setTask('')
     }
 
   return (
@@ -28,7 +29,7 @@ function AddNew() {
         <h2>Add New</h2>
         <form onSubmit={e => handleSubmit(e)}>
             <label htmlFor='task'>
-                <input type='text' name='task' value={task} onChange={e =>  handleTaskChange(e.target.value)} />
+                <input type='text' name='task' value={task} onChange={e =>  setTask(e.target.value)} />
             </label>
             <button>Add</button>
         </form>

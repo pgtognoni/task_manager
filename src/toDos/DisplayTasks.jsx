@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { setComplete, setState } from '../reducer/taskReducer'
-import { setToDo, deleteToDo } from '../reducer/toDosReducer'
+import { useSelector } from 'react-redux'
+import Pending from './Pending'
+import Completed from './Completed'
 
 function DisplayTasks() {
 
     const toDos = useSelector(state => state.toDos.toDos)
-
-    const dispatch = useDispatch()
     
     const [ pending, setPending ] = useState([])
     const [ completed, setCompleted ] = useState([]);
+
 
     useEffect(() => {
 
@@ -22,36 +21,11 @@ function DisplayTasks() {
 
     }, [toDos])
 
-
-    const handleCheckbox = (e, item) => {
-      e.preventDefault()
-      let newItem = {...item, complete: true}
-      dispatch(deleteToDo(item.id))
-      dispatch(setToDo(newItem))
-    }
-
   return (
 
     <div>
-      <h1>Pending</h1>
-        {
-          pending.map(toDo => {
-            return(
-              <div key={toDo.id}>
-              <p>{toDo.task}</p>
-              <input type='checkbox' onChange={(e) => handleCheckbox(e, toDo)} />
-              </div>
-            )
-          })
-        }
-      <h1>Complete</h1>
-      {
-          completed.map(toDo => {
-            return(
-              <p key={toDo.id}>{toDo.task}</p>
-            )
-          })
-        }
+      <Pending pending={pending} />
+      <Completed completed={completed} />
     </div>
   )
 }

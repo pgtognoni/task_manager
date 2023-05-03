@@ -1,6 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   color: black;
   padding: 2rem;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+}
+
+.drag {
+  background-color: #f0f0f0bc;
+}
+
+.moveTask {
+  cursor: pointer;
 }
 
 .App-logo {
