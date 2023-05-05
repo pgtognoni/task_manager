@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import Pending from './Pending'
-import Completed from './Completed'
+import Pending from './TaskPending'
+import Completed from './TaskCompleted'
 
 function DisplayTasks() {
 

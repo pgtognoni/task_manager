@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { setToDo, setState } from '../reducer/toDosReducer';
 import DeleteTask from './DeleteTask'
@@ -15,8 +15,15 @@ function Pending({pending}) {
   const [ dropIndex, setDropIndex ] = useState(null)
   const [ startIndex, setStartIndex ] = useState(null)
 
+  const options = {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit"
+  }
+
   const handleDragStart = (e, index) => {
-    // document.getElementById(index).classList.add('drag')
     setStartIndex(index)
   }
 
@@ -38,9 +45,8 @@ function Pending({pending}) {
     setDropIndex(index)
   }
 
-  const handleDragLeave = (index, id) => {
+  const handleDragLeave = (id) => {
     document.getElementById(id).classList.remove('drag')
-    // setDropIndex(null)
   }
 
   return (
@@ -48,6 +54,7 @@ function Pending({pending}) {
       {pending.length ?
       <>
       <h4>To Do</h4>
+      <h6>Pending: {pending.length}</h6>
         {
           pending.map((toDo, index) => {
             return(
@@ -55,13 +62,14 @@ function Pending({pending}) {
                 onDrop={() => handleDrop(toDo.id)}
                 onDragOver={(e) => handleDragOver(e, toDo.id)}
                 onDragEnter={() => handleDragEnter(index, toDo.id)}
-                onDragLeave={() => handleDragLeave(index, toDo.id)}
+                onDragLeave={() => handleDragLeave(toDo.id)}
               >
                 <MarkComplete item={toDo} />
                 <span className='my-1 mx-3'>{index + 1}</span>
                 <div draggable='true' onDragStart={(e) => handleDragStart(e, index)} className='p-1'>
                   <FontAwesomeIcon icon={faGripLines} style={{color: 'gray'}} className='moveTask'/>
                   <span className='mx-3'>{toDo.task}</span>
+                  <span className='mx-3'>{toDo.date ? new Date(toDo.date).toLocaleString('en-GB', options) : null}</span>
                   <EditTask item={toDo} index={index} />
                   <DeleteTask id={toDo.id} />
                 </div>

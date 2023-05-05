@@ -5,6 +5,14 @@ import MarkComplete from './MarkComplete'
 
 function Completed({completed}) {
 
+  const options = {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit"
+  }
+
   return (
     <div>
       {completed.length ?
@@ -17,7 +25,8 @@ function Completed({completed}) {
               <MarkComplete item={toDo} />
               <span className='my-1 mx-3'>{index + 1}</span>
               <div className='p-1'>
-                <span key={toDo.id}>{toDo.task}</span>
+                <span className='mx-3'>{toDo.task}</span>
+                <span className='mx-3'>{toDo.date ? new Date(toDo.date).toLocaleString('en-GB', options) : null}</span>
                 <EditTask item={toDo} />
                 <DeleteTask id={toDo.id} />
               </div>

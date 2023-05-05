@@ -1,6 +1,6 @@
 import React from 'react'
-import AddNew from './AddNew'
-import DisplayTasks from './DisplayTasks'
+import AddNew from '../toDos/AddNew'
+import DisplayTasks from '../toDos/DisplayTasks'
 
 function TaskManager () {
     

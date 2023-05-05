@@ -1,38 +1,28 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { setToDo } from '../reducer/toDosReducer';
-import { v4 as uuidv4 } from "uuid";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAdd } from '@fortawesome/free-solid-svg-icons'
+import ModalEdit from './ModalEdit';
+
 
 
 function AddNew() {
 
-    const [ task, setTask ] = useState('')
+    const [ modalShow, setModalShow ] = useState(false);
 
-    const dispatch = useDispatch();
-
-    const handleSubmit = (event) => {
-
-        event.preventDefault();
-        
-        const toDo = {
-            id: uuidv4(),
-            task: task,
-            complete: false,
-        }
-
-        dispatch(setToDo(toDo))
-        setTask('')
+    const handleOpenModal = () => {
+        setModalShow(true)
     }
 
   return (
     <div>
-        <h2>Add New</h2>
-        <form onSubmit={e => handleSubmit(e)}>
-            <label htmlFor='task'>
-                <input type='text' name='task' value={task} onChange={e =>  setTask(e.target.value)} />
-            </label>
-            <button>Add</button>
-        </form>
+        <button onClick={() => handleOpenModal()} className='d-flex gap-2 p-2 align-items-center'>
+            <FontAwesomeIcon icon={faAdd} style={{color: 'green'}} className=''/>
+            <span>Add New</span>
+        </button>
+        <ModalEdit                 
+            show={modalShow} 
+            onHide={() => setModalShow(false)} 
+        />
     </div>
   )
 }
