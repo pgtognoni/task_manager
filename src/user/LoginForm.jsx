@@ -106,20 +106,22 @@ function LoginForm() {
             <input className='form-control mt-2' type="password" id="password" value={password} onChange={(e) => handlePasswordChange(e)} placeholder='Password' />
           </div>
           {!isValidPassword && (
-            <p>
-                Password must be at least 8 characters long, contain 1 uppercase
-                letter, 1 number and 1 special character
+            <p className='col-xs-12 col-6 m-0 mt-1' >
+              Please enter a valid password
             </p>
             )}
           {location === '/register' 
             ? <>
+            <p className='col-xs-12 col-6 m-0' >
+              Password must be:
+            </p>
             <ul>
                 <li className={/^.{8,}$/.test(password) ? 'text-green' : 'text-gray'}>8 characters or more</li>
                 <li className={/[A-Z]/.test(password) ? 'text-green' : 'text-gray'}>1 uppercase letter</li>
                 <li className={/[\d]/.test(password) ? 'text-green' : 'text-gray'}>1 number</li>
                 <li className={/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password) ? 'text-green' : 'text-gray'}>1 special character</li>
             </ul>
-            <div className='col-xs-12 col-md-6 form-group mt-5'>
+            <div className='col-xs-12 col-6 form-group mt-5'>
                 <label htmlFor="password">Confirm Password</label>
                 <input className='form-control mt-2' type="password" id="password" value={confirmPassword} onChange={(e) => handleConfirmPasswordChange(e)} placeholder='Password' />
                 {!passwordMatch && <p>Passwords must match.</p>}
