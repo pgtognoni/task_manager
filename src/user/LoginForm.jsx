@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 
 function LoginForm() {
 
@@ -12,6 +13,7 @@ function LoginForm() {
     const [passwordMatch, setPasswordMatch] = useState(true);
 
     const location = useLocation().pathname
+    const navigate = useNavigate();
 
     const validateEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -41,21 +43,49 @@ function LoginForm() {
         setPasswordMatch(password === confirmPasswordValue);
     };
     
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+        
+        const user = {
+          email: email,
+          password: password
+        }
 
         if (location === '/register') {
             if (isValidEmail && isValidPassword && passwordMatch) {
-                // Submit form
-            } else {
-                // Show error message
-            }
+              try { 
+                const response = await axios.post(
+                  'https://us-central1-doose-manager.cloudfunctions.net/registerUser', 
+                  user,
+                  {headers: { 'Access-Control-Allow-Origin': '*'}})
+                if (response.status === 200) {
+                  navigate('/')
+                  setEmail('')
+                  setPassword('')
+                  setConfirmPassword('')
+                  console.log(response.data)
+                }
+              } catch (error) {
+                console.log(error);
+              }
+            } 
         } else {
             if (isValidEmail && isValidPassword) {
-                // Submit form
-            } else {
-                // Show error message
-            }
+              try { 
+                const response = await axios.post(
+                  'https://us-central1-doose-manager.cloudfunctions.net/loginUser', 
+                  user,
+                  {headers: { 'Access-Control-Allow-Origin': '*'}})
+                if (response.status === 200) {
+                  navigate('/')
+                  setEmail('')
+                  setPassword('')
+                  console.log(response.data)
+                }
+              } catch (error) {
+                console.log(error);
+              }
+            } 
         }
 
     };
@@ -91,7 +121,7 @@ function LoginForm() {
             </ul>
             <div className='col-xs-12 col-md-6 form-group mt-5'>
                 <label htmlFor="password">Confirm Password</label>
-                <input className='form-control mt-2' type="password" id="password" value={password} onChange={(e) => handleConfirmPasswordChange(e)} placeholder='Password' />
+                <input className='form-control mt-2' type="password" id="password" value={confirmPassword} onChange={(e) => handleConfirmPasswordChange(e)} placeholder='Password' />
                 {!passwordMatch && <p>Passwords must match.</p>}
             </div>
             </>
