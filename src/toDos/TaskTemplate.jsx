@@ -18,25 +18,26 @@ function TaskTemplate(props) {
     }
 
     return (
-        <div data-index={index} className='d-flex m-3' id={toDo.id}
+        <tr data-index={index} id={toDo.id}
             onDrop={() => handleDrop(toDo.id)}
             onDragOver={(e) => handleDragOver(e, toDo.id)}
             onDragEnter={() => handleDragEnter(index, toDo.id)}
             onDragLeave={() => handleDragLeave(toDo.id)}
         >
         <MarkComplete item={toDo} />
-        <span className='my-1 mx-3'>{index + 1}</span>
-        <div draggable={toDo.complete === false ? 'true' : 'false'} onDragStart={(e) => handleDragStart(e, index)} className='p-1'>
+        <td className='my-1 mx-3'>{index + 1}</td>
         {toDo.complete === false 
-            ? <FontAwesomeIcon icon={faGripLines} style={{color: 'gray'}} className='moveTask'/>
-            : null
+            ? <td
+                draggable={toDo.complete === false ? 'true' : 'false'} 
+                onDragStart={(e) => handleDragStart(e, index)}             
+                ><FontAwesomeIcon icon={faGripLines} style={{color: 'gray'}} className='moveTask'/></td>
+            : <td></td>
         }
-          <span className='mx-3'>{toDo.task}</span>
-          <span className='mx-3'>{toDo.date ? new Date(toDo.date).toLocaleString('en-GB', options) : null}</span>
+          <td>{toDo.task}</td>
+          <td>{toDo.date ? new Date(toDo.date).toLocaleString('en-GB', options) : null}</td>
           <EditTask item={toDo} index={index} />
           <DeleteTask id={toDo.id} />
-        </div>
-      </div>
+      </tr>
     )
 }
 

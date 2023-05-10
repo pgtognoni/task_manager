@@ -1,11 +1,10 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
 
 function NavbarCollapse() {
   return (
-    <Navbar collapseOnSelect expand="sm" bg="light" variant="light" className='p-0'>
+    <Navbar collapseOnSelect expand="sm" bg="dark" variant="dark" className='p-2'>
       <Container>
         <Navbar.Brand href="/">DOOSE</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

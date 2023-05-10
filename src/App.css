@@ -1,11 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+:root {
+  --navbar-bg-color:#a018fb; 
+  --navbar-brand-color: #f6fa00;
+  --text-white: #f3f3f3;
+  --gray-box-background: #f8f8f8;
+  --green-bg: rgb(5, 202, 5);
+  --draggable: #a018fb1e;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
 body {
-  color: black;
+  color: #474747 !important;
 }
 
 button {
@@ -17,12 +30,141 @@ button:focus {
   outline: none;
 }
 
+ul {
+  list-style: none;
+}
+
+a:visited,
+a:active,
+a:hover,
+a {
+  text-decoration: none !important;
+}
+
+/* NAVBAR */
+
+nav.bg-dark {
+  background-color: var(--navbar-bg-color) !important;
+}
+
+nav .navbar-brand {
+  color: var(--navbar-brand-color);
+  font-family: 'Lilita One', cursive;
+  font-size: 2rem !important;
+}
+
+nav .nav-link {
+  color: var(--text-white);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+nav .navbar-toggler {
+  color: var(--text-white);
+}
+
+/* HOME PAGE */
+
+.section {
+  font-size: 1.2rem;
+  letter-spacing: .05rem;
+  border-bottom: 1px solid var(--navbar-bg-color);
+  text-align: justify;
+  position: relative;
+  max-width: 768px;
+}
+
+.brand-name {
+  font-family: 'Lilita One', cursive;
+  font-size: 1.6rem;
+  text-shadow: 0px 2px 1px #c9c9c9;
+  text-transform: uppercase;
+  letter-spacing: .08rem;
+}
+
+li::before {
+  content: '⦿ '
+}
+
+.section.sec-3 {
+  border-bottom: none;
+}
+
+.gray-box {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  z-index: -1;
+  background-color: var(--gray-box-background);
+  transform: skew(-5deg);
+}
+
+.sec-2 .start {
+  background-color: var(--green-bg);
+  width: 50%;
+  transform: skew(-5deg);
+  box-shadow: 5px 5px 0 #c1c1c1;
+}
+
+.start a {
+  color: var(--navbar-brand-color) !important;
+  text-shadow: 1px 0 0 var(--navbar-bg-color);
+}
+
+.purple-box {
+  position: absolute;
+  height: 100%;
+  width: 70%;
+  z-index: -1;
+  transform: skew(-5deg);
+  background-color: var(--navbar-bg-color);
+  box-shadow: 5px 5px 0 #c1c1c1;
+}
+
+h2.member a {
+  color: var(--navbar-brand-color)
+}
+
+/* TASK MANAGER */
+
+.task-manager {
+  max-width: 768px;
+}
+
+.add-new {
+  background-color: var(--gray-box-background);
+  width: 60%;
+  border-radius: 50px;
+  font-size: 1.2rem;
+}
+
+.search-task input {
+  width: 90%;
+  border: none;
+  background-color: var(--gray-box-background);
+}
+
+.search-task input:focus {
+  outline: none;
+}
+
+.toogle-task {
+  font-size: 1.5rem;
+}
 .drag {
-  background-color: #f0f0f0bc;
+  background-color: var(--draggable);
 }
 
 .moveTask {
   cursor: pointer;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-purple {
+  color: var(--navbar-bg-color)
 }
 
 .text-gray {
@@ -30,5 +172,5 @@ button:focus {
 }
 
 .text-green {
-  color: rgb(3, 183, 3);
+  color: var(--green-bg);
 }

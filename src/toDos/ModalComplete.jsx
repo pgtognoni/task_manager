@@ -39,8 +39,8 @@ function ModalComplete(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Footer>
-        <Button onClick={props.onHide}>No</Button>
-        <Button variant="primary" onClick={(e) => handleClose(e, props.item)}>
+        <Button onClick={props.onHide} variant="outline-danger">No</Button>
+        <Button variant="success" onClick={(e) => handleClose(e, props.item)}>
            Yes
         </Button>
       </Modal.Footer>

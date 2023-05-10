@@ -96,8 +96,8 @@ function ModalEdit (props) {
           </Form>      
         </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Cancel</Button>
-        <Button variant="primary" onClick={(e) => handleSubmit(e)}>
+        <Button onClick={props.onHide} variant="outline-danger">Cancel</Button>
+        <Button variant="success" onClick={(e) => handleSubmit(e)}>
            Save
         </Button>
       </Modal.Footer>

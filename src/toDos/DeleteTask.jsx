@@ -8,10 +8,10 @@ function DeleteTask({id}) {
     const [ modalShow, setModalShow ] = useState(false);
 
     return (
-        <>
+        <td>
             <button onClick={() => setModalShow(true)}><FontAwesomeIcon icon={faTrash} style={{color: 'red'}}/></button>
             <ModalDelete show={modalShow} onHide={() => setModalShow(false)} id={id} />
-        </>
+        </td>
     )
 }
 

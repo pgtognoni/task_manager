@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Table from 'react-bootstrap/Table'
 import { useDispatch } from 'react-redux';
 import { setState } from '../reducer/toDosReducer';
 import TaskTemplate from './TaskTemplate';
@@ -40,11 +41,14 @@ function DisplayTasks({ pending, completed }) {
   }
 
   return (
-    <div className='my-3'>
+    <div className='m-3 pt-3 task-manager mx-auto'>
+    <Table striped>
       <TooglePending setShowPending={setShowPending} showPending={showPending} />
-      <>
-      <h4>To Do</h4>
-      <h6>{showPending ? `Pending: ${pending.length}` : `Completed: ${completed.length}`}</h6>
+      <tbody>
+      <tr>{showPending 
+        ? <><td colSpan={7}><h5 className='text-center'>Pending: <span className='mx-3 text-purple'>{pending.length}</span></h5></td></> 
+        : <><td colSpan={7}><h5 className='text-center'>Completed: <span className='mx-3 text-green'>{completed.length}</span></h5></td></>
+      }</tr>
         {showPending  
           ? pending.map((toDo, index) => {
             return(
@@ -70,7 +74,8 @@ function DisplayTasks({ pending, completed }) {
             )
           })
         }
-      </>
+      </tbody>
+    </Table>
     </div>
   )
 }
