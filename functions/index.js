@@ -6,20 +6,20 @@ const cors = require("cors")({origin: true});
 
 exports.registerUser = functions.https.onRequest((req, res) => {
   cors(req, res, () => {
-    if (req.method === "POST") {
+    try {
       res.send("User Register");
-    } else {
-      res.status(400).send("Invalid request method");
+    } catch (error) {
+      res.send("Invalid request method", error);
     }
   });
 });
 
 exports.loginUser = functions.https.onRequest((req, res) => {
   cors(req, res, () => {
-    if (req.method === "POST") {
+    try {
       res.send("User logged!");
-    } else {
-      res.status(400).send("Invalid request method");
+    } catch (error) {
+      res.send("Invalid request method", error);
     }
   });
 });

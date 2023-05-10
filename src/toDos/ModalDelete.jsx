@@ -25,9 +25,6 @@ function ModalDelete (props) {
           Delete To Do?
         </Modal.Title>
       </Modal.Header>
-      {/* <Modal.Body>
-        <p>Mark task as completed?</p>
-      </Modal.Body> */}
       <Modal.Footer>
         <Button onClick={props.onHide}>No</Button>
         <Button variant="primary" onClick={(e) => handleDelete(props.id)}>

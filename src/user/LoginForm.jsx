@@ -1,111 +1,89 @@
 import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 
 function LoginForm() {
 
+
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [isValidEmail, setIsValidEmail] = useState(false);
-    const [isValidPassword, setIsValidPassword] = useState(false);
     const [passwordMatch, setPasswordMatch] = useState(true);
 
     const location = useLocation().pathname
     const navigate = useNavigate();
 
-    const validateEmail = (email) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    };
-    
-    const validatePassword = (password) => {
-        const passwordRegex = /^(?=.*\d)(?=.*[!!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*[A-Z]).{8,}$/;
-        return passwordRegex.test(password);
-    };
-    
-    const handleEmailChange = (event) => {
-        const emailValue = event.target.value;
-        setEmail(emailValue);
-        setIsValidEmail(validateEmail(emailValue));
-    };
-    
-    const handlePasswordChange = (event) => {
-        const passwordValue = event.target.value;
-        setPassword(passwordValue);
-        setIsValidPassword(validatePassword(passwordValue));
-    };
-    
     const handleConfirmPasswordChange = (event) => {
-        const confirmPasswordValue = event.target.value;
-        setConfirmPassword(confirmPasswordValue);
-        setPasswordMatch(password === confirmPasswordValue);
+      const confirmPasswordValue = event.target.value;
+      setConfirmPassword(confirmPasswordValue);
+      setPasswordMatch(password === confirmPasswordValue);
     };
     
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        
-        const user = {
-          email: email,
-          password: password
-        }
+    const handleFormSubmit = async (event) => {
+      event.preventDefault();
+      
+      const user = {
+        email: email,
+        password: password
+      }
 
-        if (location === '/register') {
-            if (isValidEmail && isValidPassword && passwordMatch) {
-              try { 
-                const response = await axios.post(
-                  'https://us-central1-doose-manager.cloudfunctions.net/registerUser', 
-                  user,
-                  {headers: { 'Access-Control-Allow-Origin': '*'}})
-                if (response.status === 200) {
-                  navigate('/')
-                  setEmail('')
-                  setPassword('')
-                  setConfirmPassword('')
-                  console.log(response.data)
-                }
-              } catch (error) {
-                console.log(error);
-              }
-            } 
-        } else {
-            if (isValidEmail && isValidPassword) {
-              try { 
-                const response = await axios.post(
-                  'https://us-central1-doose-manager.cloudfunctions.net/loginUser', 
-                  user,
-                  {headers: { 'Access-Control-Allow-Origin': '*'}})
-                if (response.status === 200) {
-                  navigate('/')
-                  setEmail('')
-                  setPassword('')
-                  console.log(response.data)
-                }
-              } catch (error) {
-                console.log(error);
-              }
-            } 
+      try { 
+        const response = await axios.post(
+          `https://us-central1-doose-manager.cloudfunctions.net/${ location === '/register' ? 'registerUser' : 'loginUser' }`, 
+          user,
+          {headers: { 'Access-Control-Allow-Origin': '*'}})
+        if (response.status === 200) {
+          navigate('/')
+          setEmail('')
+          setPassword('')
+          setConfirmPassword('')
+          console.log(response.data)
         }
-
-    };
+      } catch (error) {
+        console.log(error);
+      }
+     };
 
 
   return (
     <div className='container'>
       <div className='row'>
-      <form onSubmit={(e) => handleSubmit(e)} className='col container'>
+      <form onSubmit={handleSubmit(handleFormSubmit)} className='col container'>
         <div className=''>
           <div className='col-xs-12 col-6 form-group mt-5'>
             <label htmlFor="email">Email</label>
-            <input className='form-control mt-2' type="email" id="email" value={email} onChange={(e) => handleEmailChange(e)} placeholder='Email' />
-            {!isValidEmail && <p>Please enter a valid email address.</p>}
+            <input className='form-control mt-2' 
+              type="email" id="email" 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              placeholder='Email' 
+              {...register('email', {
+                required: true,
+                pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              })}
+              />
+            {errors.email && <p>Please enter a valid email address.</p>}
           </div>
           <div className='col-xs-12 col-6 form-group mt-5'>
             <label htmlFor="password">Password</label>
-            <input className='form-control mt-2' type="password" id="password" value={password} onChange={(e) => handlePasswordChange(e)} placeholder='Password' />
+            <input className='form-control mt-2'
+             type="password" 
+             id="password" 
+             value={password} 
+             onChange={(e) => setPassword(e.target.value)} 
+             placeholder='Password' 
+             {...register('password', {
+              required: true,
+              minLength: 8,
+              pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
+             })}
+             />
           </div>
-          {!isValidPassword && (
+          {errors.password  && (
             <p className='col-xs-12 col-6 m-0 mt-1' >
               Please enter a valid password
             </p>
@@ -131,7 +109,14 @@ function LoginForm() {
         </div>
         <div className='d-flex mt-4 gap-3'>
           <button type="submit" className='btn btn-send btn-primary'>{location === '/register' ? 'Register' : 'Log In'}</button>
-          {location === '/login' && (
+          {location !== '/login' 
+          ? (
+            <div className='d-flex align-items-center gap-2'>
+                <span>Have an account?</span>
+                <Link to='/login'>Log In</Link>
+            </div>
+          )
+          : (
             <div className='d-flex align-items-center gap-2'>
                 <span>Don't have an account?</span>
                 <Link to='/register'>Sign Up</Link>

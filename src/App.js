@@ -42,6 +42,8 @@ function App() {
         <Route path='/login' element={<LogIn />} />
         <Route path='/register' element={<Register />} />
         <Route path='/taskmanager' element={<TaskManager />} />
+
+        <Route path="*" element={<h1>Not Found...</h1>} />
       </Routes>
     </div>
   );
