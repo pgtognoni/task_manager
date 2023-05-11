@@ -22,7 +22,7 @@ function App() {
 
     const list = JSON.parse(window.localStorage.getItem('toDos'))
 
-    if (list.toDos && list.toDos.length > 0) {
+    if (list && list.toDos.length > 0) {
       dispatch(setState(list.toDos))
     }
 
