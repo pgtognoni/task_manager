@@ -86,7 +86,7 @@ export default Form
 This App is build with `REACT HOOKS` and using `Firebase functions` and `Firebase Hosting`. 
 `React-Redux` is used to manage global state and `React-Router` to navigate between different views. 
 
-To view the app go to [https://doose-manager.web.app/](DOOSE)
+To view the app go to [DOOSE](https://doose-manager.web.app/)
 
 It's a simple app to add and edit To Dos and Task Management
 
