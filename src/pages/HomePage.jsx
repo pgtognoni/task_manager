@@ -17,7 +17,7 @@ function HomePage() {
         <ul>
           <li>Add a task to your list</li>
           <li>Set a Date</li>
-          <li>Edit and mark as complete</li>
+          <li>Edit and mark as completed</li>
         </ul>
         <p>Become a member and...</p>
         <ul>

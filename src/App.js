@@ -9,6 +9,7 @@ import NavbarCollapse from './generalComponents/NavbarCollapse';
 import HomePage from './pages/HomePage';
 import LogIn from './pages/LogIn';
 import Register from './pages/Register';
+import UserLogged from './pages/UserLogged';
 
 function App() {
   
@@ -42,7 +43,8 @@ function App() {
         <Route path='/login' element={<LogIn />} />
         <Route path='/register' element={<Register />} />
         <Route path='/taskmanager' element={<TaskManager />} />
-
+        <Route path='/userLogged' element={<UserLogged />} />
+        
         <Route path="*" element={<h1>Not Found...</h1>} />
       </Routes>
     </div>

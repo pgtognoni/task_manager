@@ -23,9 +23,9 @@ function TaskTemplate(props) {
             onDragOver={(e) => handleDragOver(e, toDo.id)}
             onDragEnter={() => handleDragEnter(index, toDo.id)}
             onDragLeave={() => handleDragLeave(toDo.id)}
+            className='task-text'
         >
-        <MarkComplete item={toDo} />
-        <td className='my-1 mx-3'>{index + 1}</td>
+        <MarkComplete item={toDo} index={index} />
         {toDo.complete === false 
             ? <td
                 draggable={toDo.complete === false ? 'true' : 'false'} 

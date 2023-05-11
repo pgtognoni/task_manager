@@ -7,24 +7,27 @@ import axios from 'axios';
 function LoginForm() {
 
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, setValue, watch, reset, formState: { errors } } = useForm();
     
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    // const [email, setEmail] = useState('');
+    // const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [passwordMatch, setPasswordMatch] = useState(true);
 
     const location = useLocation().pathname
     const navigate = useNavigate();
+    const password = watch('password')
+    const email = watch('email')
 
     const handleConfirmPasswordChange = (event) => {
+      console.log(event.target.value)
       const confirmPasswordValue = event.target.value;
       setConfirmPassword(confirmPasswordValue);
       setPasswordMatch(password === confirmPasswordValue);
     };
     
     const handleFormSubmit = async (event) => {
-      event.preventDefault();
+      //event.preventDefault();
       
       const user = {
         email: email,
@@ -37,9 +40,10 @@ function LoginForm() {
           user,
           {headers: { 'Access-Control-Allow-Origin': '*'}})
         if (response.status === 200) {
-          navigate('/')
-          setEmail('')
-          setPassword('')
+          navigate('/userLogged')
+          // setEmail('')
+          // setPassword('')
+          reset({});
           setConfirmPassword('')
           console.log(response.data)
         }
@@ -58,9 +62,9 @@ function LoginForm() {
             <label htmlFor="email">Email</label>
             <input className='form-control mt-2' 
               type="email" id="email" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-              placeholder='Email' 
+              // value={email} 
+              placeholder='Email'
+              onChange={(e) => setValue(e.target.value)} 
               {...register('email', {
                 required: true,
                 pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -73,8 +77,8 @@ function LoginForm() {
             <input className='form-control mt-2'
              type="password" 
              id="password" 
-             value={password} 
-             onChange={(e) => setPassword(e.target.value)} 
+            //  value={password} 
+             onChange={(e) => setValue(e.target.value)}
              placeholder='Password' 
              {...register('password', {
               required: true,
@@ -96,18 +100,19 @@ function LoginForm() {
             <ul>
                 <li className={/^.{8,}$/.test(password) ? 'text-green' : 'text-gray'}>8 characters or more</li>
                 <li className={/[A-Z]/.test(password) ? 'text-green' : 'text-gray'}>1 uppercase letter</li>
+                <li className={/[a-z]/.test(password) ? 'text-green' : 'text-gray'}>1 lowercase letter</li>
                 <li className={/[\d]/.test(password) ? 'text-green' : 'text-gray'}>1 number</li>
                 <li className={/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password) ? 'text-green' : 'text-gray'}>1 special character</li>
             </ul>
             <div className='col-xs-12 col-6 form-group mt-5'>
                 <label htmlFor="password">Confirm Password</label>
-                <input className='form-control mt-2' type="password" id="password" value={confirmPassword} onChange={(e) => handleConfirmPasswordChange(e)} placeholder='Password' />
+                <input className='form-control mt-2' type="password" id="confirm-password" value={confirmPassword} onChange={(e) => handleConfirmPasswordChange(e)} placeholder='Confirm password' />
                 {!passwordMatch && <p>Passwords must match.</p>}
             </div>
             </>
             : null}  
         </div>
-        <div className='d-flex mt-4 gap-3'>
+        <div className='d-md-flex mt-4 gap-3'>
           <button type="submit" className='btn btn-send btn-primary'>{location === '/register' ? 'Register' : 'Log In'}</button>
           {location !== '/login' 
           ? (

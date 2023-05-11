@@ -3,16 +3,18 @@ import ModalComplete from './ModalComplete'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 
-function MarkComplete({item}) {
+function MarkComplete({item, index}) {
 
   const [ modalShow, setModalShow ] = useState(false);
     
   return (
-    <td>
+    <td colSpan={2}>
       <button onClick={() => setModalShow(true)}>
         <FontAwesomeIcon icon={faCheckCircle} 
         style={item.complete === false ? {color: '#c9c9c9'} : {color: 'green'}}
+        className={'mx-2'}
         />
+        {index +1}
       </button>
       <ModalComplete show={modalShow} onHide={() => setModalShow(false)} item={item}/>
     </td>

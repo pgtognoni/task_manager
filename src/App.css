@@ -5,7 +5,7 @@
   --navbar-bg-color:#a018fb; 
   --navbar-brand-color: #f6fa00;
   --text-white: #f3f3f3;
-  --gray-box-background: #f8f8f8;
+  --gray-box-background: #f7f7f7;
   --green-bg: rgb(5, 202, 5);
   --draggable: #a018fb1e;
 }
@@ -43,6 +43,10 @@ a {
 
 /* NAVBAR */
 
+nav {
+  box-shadow: 0 3px 5px #ccc;
+}
+
 nav.bg-dark {
   background-color: var(--navbar-bg-color) !important;
 }
@@ -69,7 +73,6 @@ nav .navbar-toggler {
   font-size: 1.2rem;
   letter-spacing: .05rem;
   border-bottom: 1px solid var(--navbar-bg-color);
-  text-align: justify;
   position: relative;
   max-width: 768px;
 }
@@ -149,10 +152,27 @@ h2.member a {
 }
 
 .toogle-task {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
 }
+
+@media screen and (max-width: 430px) {
+  
+  .task-text {
+    font-size: .6rem !important;
+  }
+
+  .toogle-task {
+    font-size: .8rem !important;
+  }
+
+}
+
 .drag {
   background-color: var(--draggable);
+}
+
+.task-text {
+  text-overflow: ellipsis;
 }
 
 .moveTask {
