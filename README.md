@@ -90,7 +90,7 @@ To view the app go to [DOOSE](https://doose-manager.web.app/)
 
 It's a simple app to add and edit To Dos and Task Management
 
-![](https://res.cloudinary.com/dgamncxcz/image/upload/v1683805321/Screen_Shot_2023-05-11_at_12.41.10_erfewy.png)
+![](https://res.cloudinary.com/dgamncxcz/image/upload/v1683807731/Screen_Shot_2023-05-11_at_13.21.31_hvjahu.png)
 
 
 Finally, React has two different approaches to rendering a web page. In server-side rendering the HTML is generated on the server and sent to the clients as a complete document, along with the CSS and JavaScript files. The initial page load is faster as the browser doesn't need to wait for JavaScript to download and execute before rendering the page. However, server-side rendering can be slower for subsequent navigation within the application, as it requires a full page refresh each time the user navigates to a new page. 
