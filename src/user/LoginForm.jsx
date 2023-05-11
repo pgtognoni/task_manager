@@ -9,8 +9,6 @@ function LoginForm() {
 
     const { register, handleSubmit, setValue, watch, reset, formState: { errors } } = useForm();
     
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [passwordMatch, setPasswordMatch] = useState(true);
 
@@ -20,14 +18,12 @@ function LoginForm() {
     const email = watch('email')
 
     const handleConfirmPasswordChange = (event) => {
-      console.log(event.target.value)
       const confirmPasswordValue = event.target.value;
       setConfirmPassword(confirmPasswordValue);
       setPasswordMatch(password === confirmPasswordValue);
     };
     
     const handleFormSubmit = async (event) => {
-      //event.preventDefault();
       
       const user = {
         email: email,
@@ -41,8 +37,6 @@ function LoginForm() {
           {headers: { 'Access-Control-Allow-Origin': '*'}})
         if (response.status === 200) {
           navigate('/userLogged')
-          // setEmail('')
-          // setPassword('')
           reset({});
           setConfirmPassword('')
           console.log(response.data)
@@ -62,7 +56,6 @@ function LoginForm() {
             <label htmlFor="email">Email</label>
             <input className='form-control mt-2' 
               type="email" id="email" 
-              // value={email} 
               placeholder='Email'
               onChange={(e) => setValue(e.target.value)} 
               {...register('email', {
@@ -77,7 +70,6 @@ function LoginForm() {
             <input className='form-control mt-2'
              type="password" 
              id="password" 
-            //  value={password} 
              onChange={(e) => setValue(e.target.value)}
              placeholder='Password' 
              {...register('password', {

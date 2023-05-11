@@ -7,7 +7,6 @@ function TooglePending({ setShowPending, showPending }) {
     }
 
   return (
-    // <div className='d-flex align-items-center toogle-task'>
     <thead className='toogle-task'>
       <tr>
         <th >Show: </th>
@@ -21,7 +20,6 @@ function TooglePending({ setShowPending, showPending }) {
         </th>
       </tr>
     </thead>
-    // </div>
   )
 }
 
