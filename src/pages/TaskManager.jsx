@@ -6,7 +6,7 @@ function TaskManager () {
     
   return (
     <div className='m-3'>
-      <h4 className='brand-name'>To Doose:</h4>
+      <h4 className='brand-name mx-1'>To Doose:</h4>
       <AddNew />
       <TasksContainer />
     </div>

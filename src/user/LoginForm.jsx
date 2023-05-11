@@ -51,8 +51,8 @@ function LoginForm() {
     <div className='container'>
       <div className='row'>
       <form onSubmit={handleSubmit(handleFormSubmit)} className='col container'>
-        <div className=''>
-          <div className='col-xs-12 col-6 form-group mt-5'>
+        <div className='mx-auto'>
+          <div className='col-xs-12 col-6 form-group mt-5 mx-auto'>
             <label htmlFor="email">Email</label>
             <input className='form-control mt-2' 
               type="email" id="email" 
@@ -65,7 +65,7 @@ function LoginForm() {
               />
             {errors.email && <p>Please enter a valid email address.</p>}
           </div>
-          <div className='col-xs-12 col-6 form-group mt-5'>
+          <div className='col-xs-12 col-6 form-group mt-5 mx-auto'>
             <label htmlFor="password">Password</label>
             <input className='form-control mt-2'
              type="password" 
@@ -80,23 +80,23 @@ function LoginForm() {
              />
           </div>
           {errors.password  && (
-            <p className='col-xs-12 col-6 m-0 mt-1' >
+            <p className='col-xs-12 col-6 m-0 mt-1 mx-auto' >
               Please enter a valid password
             </p>
             )}
           {location === '/register' 
             ? <>
-            <p className='col-xs-12 col-6 m-0' >
+            <p className='col-xs-12 col-6 m-0 mx-auto' >
               Password must be:
             </p>
-            <ul>
+            <ul className='col-xs-12 col-6 m-0 mx-auto'>
                 <li className={/^.{8,}$/.test(password) ? 'text-green' : 'text-gray'}>8 characters or more</li>
                 <li className={/[A-Z]/.test(password) ? 'text-green' : 'text-gray'}>1 uppercase letter</li>
                 <li className={/[a-z]/.test(password) ? 'text-green' : 'text-gray'}>1 lowercase letter</li>
                 <li className={/[\d]/.test(password) ? 'text-green' : 'text-gray'}>1 number</li>
                 <li className={/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password) ? 'text-green' : 'text-gray'}>1 special character</li>
             </ul>
-            <div className='col-xs-12 col-6 form-group mt-5'>
+            <div className='col-xs-12 col-6 form-group mt-5 mx-auto'>
                 <label htmlFor="password">Confirm Password</label>
                 <input className='form-control mt-2' type="password" id="confirm-password" value={confirmPassword} onChange={(e) => handleConfirmPasswordChange(e)} placeholder='Confirm password' />
                 {!passwordMatch && <p>Passwords must match.</p>}
@@ -104,7 +104,7 @@ function LoginForm() {
             </>
             : null}  
         </div>
-        <div className='d-md-flex mt-4 gap-3'>
+        <div className='d-md-flex mt-4 gap-3 mx-auto justify-content-center'>
           <button type="submit" className='btn btn-send btn-primary'>{location === '/register' ? 'Register' : 'Log In'}</button>
           {location !== '/login' 
           ? (
