@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
 import Table from 'react-bootstrap/Table'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setState } from '../reducer/toDosReducer';
 import TaskTemplate from './TaskTemplate';
 import TooglePending from './TooglePending';
-
+import { collection,  doc, setDoc } from '@firebase/firestore';
+import { firestore } from '../firebaseConfig';
 
 function DisplayTasks({ pending, completed }) {
 
   const dispatch = useDispatch();
+  const tasksRef = collection(firestore, 'tasksManager')
+  const docRef = doc(tasksRef, 'tasks')
+  const toDos = useSelector(state => state.toDos.toDos)
 
   const [ dropIndex, setDropIndex ] = useState(null)
   const [ startIndex, setStartIndex ] = useState(null)
@@ -19,10 +23,11 @@ function DisplayTasks({ pending, completed }) {
   }
 
   const handleDrop = (id) => {
-    let newArray = [...pending] 
+    let newArray = [...toDos] 
     const item = newArray.splice(startIndex, 1)[0]
     newArray.splice(dropIndex, 0, item)
     dispatch(setState(newArray))
+    setDoc(docRef, {toDos: newArray})
     document.getElementById(id).classList.remove('drag')
   }
 

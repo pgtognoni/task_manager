@@ -36,7 +36,7 @@ function TaskTemplate(props) {
           <td>{toDo.task}</td>
           <td>{toDo.date ? new Date(toDo.date).toLocaleString('en-GB', options) : null}</td>
           <EditTask item={toDo} index={index} />
-          <DeleteTask id={toDo.id} />
+          <DeleteTask id={toDo.id} item={toDo} />
       </tr>
     )
 }

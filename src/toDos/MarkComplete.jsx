@@ -3,7 +3,7 @@ import ModalComplete from './ModalComplete'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 
-function MarkComplete({item, index}) {
+function MarkComplete({item, index }) {
 
   const [ modalShow, setModalShow ] = useState(false);
     

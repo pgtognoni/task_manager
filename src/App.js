@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setState } from './reducer/toDosReducer';
 import './App.css';
@@ -13,27 +13,30 @@ import UserLogged from './pages/UserLogged';
 
 function App() {
   
-  const toDos = useSelector(state => state.toDos)
-  const dispatch = useDispatch()
+  // const toDos = useSelector(state => state.toDos)
+  // const dispatch = useDispatch()
 
-  //Get ToDos when page upload from LocalStorage if saved locally
+  // Get ToDos when page upload from LocalStorage if saved locally
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const list = JSON.parse(window.localStorage.getItem('toDos'))
+  //   const list = JSON.parse(window.localStorage.getItem('toDos'))
 
-    if (list && list.toDos.length > 0) {
-      dispatch(setState(list.toDos))
-    }
+  //   if (list && list.toDos.length > 0) {
+  //     dispatch(setState(list.toDos))
+  //   }
 
-  }, [])
+  //   getTasks();
 
-  //Set ToDos in localStorage every time there are changes in the state
+  // }, [])
 
-  useEffect(() => {
-    const list = JSON.stringify(toDos)
-    window.localStorage.setItem('toDos', list)
-  }, [toDos])
+  // Set ToDos in localStorage every time there are changes in the state
+
+  // useEffect(() => {
+  //   const list = JSON.stringify(toDos)
+  //   window.localStorage.setItem('toDos', list)
+
+  // }, [toDos])
 
   return (
     <div className="App">

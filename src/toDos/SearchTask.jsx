@@ -8,7 +8,8 @@ function SearchTask({ setToDoList }) {
     const toDos = useSelector(state => state.toDos.toDos)
 
     const handleSearch = (e) => {
-        const newArr = toDos.filter(item => item.task.match(e.target.value))
+        const regex = new RegExp(e.target.value, 'gi')
+        const newArr = toDos.filter(item => item.task.match(regex));
         setToDoList(newArr)
     }
 

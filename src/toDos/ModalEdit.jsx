@@ -5,37 +5,43 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setState, setToDo, deleteToDo } from '../reducer/toDosReducer';
 import { v4 as uuidv4 } from "uuid";
+import { firestore } from '../firebaseConfig';
+import { collection, arrayUnion, doc, setDoc } from '@firebase/firestore';
 
 function ModalEdit (props) {
 
     const [ task, setTask ] = useState('')
     const [ date, setDate ] = useState('')
 
+    const toDos = useSelector(state => state.toDos.toDos)
+    const tasksRef = collection(firestore, 'tasksManager')
+    const docRef = doc(tasksRef, 'tasks')
+
+    const dispatch = useDispatch();
+
     useEffect(() => {
       if (props.item) {
         setTask(props.item.task)
 
         if (props.item.date){
-          let date = new Date(props.item.date)
-          let offset = date.getTimezoneOffset()
-          let newDate = new Date(date.setMinutes(date.getMinutes() - offset)).toLocaleString()
-          let final = new Date(newDate).toISOString().slice(0, -8);
-          setDate(final)
+          // let date = new Date(props.item.date)
+          // let offset = date.getTimezoneOffset()
+          // let newDate = new Date(date.setMinutes(date.getMinutes() - offset)).toLocaleString()
+          // let final = new Date(newDate).toISOString().slice(0, -8);
+          setDate(props.item.date)
         }
       }
     }, [props])
 
-    const dispatch = useDispatch();
-    const toDos = useSelector(state => state.toDos.toDos)
-
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
 
         event.preventDefault();
         let id;
         props.item ? id = props.item.id : id = uuidv4();
 
         let newDate = ''
-        date ? newDate = new Date(date).toLocaleString() : newDate = ''
+        // date ? newDate = new Date(date).toISOString() : newDate = ''
+        date ? newDate = date : newDate = ''
 
         const toDo = {
             id: id,
@@ -49,11 +55,13 @@ function ModalEdit (props) {
             const newArray = [...toDos]
             newArray.splice(props.index, 1, toDo)
             dispatch(setState(newArray));
+            setDoc(docRef, {toDos: newArray})
           } else {
               dispatch(deleteToDo(props.item.id))
               dispatch(setToDo(toDo))
           } 
         } else {
+          setDoc(docRef, {toDos: arrayUnion(toDo)}, {merge: true})
           dispatch(setToDo(toDo))
           setTask('')
           setDate('')

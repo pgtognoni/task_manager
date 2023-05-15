@@ -1,27 +1,33 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { setToDo, deleteToDo } from '../reducer/toDosReducer'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { setState } from '../reducer/toDosReducer'
+import { collection,  doc, setDoc } from '@firebase/firestore';
+import { firestore } from '../firebaseConfig';
 
 function ModalComplete(props) {
 
     const dispatch = useDispatch()
+    const toDos = useSelector(state => state.toDos.toDos)
+    const tasksRef = collection(firestore, 'tasksManager')
+    const docRef = doc(tasksRef, 'tasks')
 
-    const handleClose = (e, item) => {
+    const handleClose = async (e, item) => {
         props.onHide();
         e.preventDefault()
-
+        const newArray = toDos.filter(toDo => toDo.id !== item.id)
         let newItem;
         
         item.complete === false 
           ? newItem = {...item, complete: true} 
           : newItem = {...item, complete: false}
 
-        dispatch(deleteToDo(item.id))
-        dispatch(setToDo(newItem))
-    };
+        newArray.push(newItem)
+
+        dispatch(setState(newArray))
+        setDoc(docRef, {toDos: newArray})
+      };
 
   return (
     <Modal

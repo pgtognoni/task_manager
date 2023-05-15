@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencil } from '@fortawesome/free-solid-svg-icons'
 import ModalEdit from './ModalEdit'
 
-function EditTask({item, index}) {
+function EditTask({item, index, getTasks}) {
 
     const [ modalShow, setModalShow ] = useState(false);
 
@@ -21,6 +21,7 @@ function EditTask({item, index}) {
                 onHide={() => setModalShow(false)} 
                 item={item}  
                 index={index} 
+                getTasks={getTasks}
             />
         </td>
     )

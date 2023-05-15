@@ -104,7 +104,7 @@ function LoginForm() {
             </>
             : null}  
         </div>
-        <div className='d-md-flex mt-4 gap-3 mx-auto justify-content-center'>
+        <div className='d-flex flex-column flex-sm-row mt-4 gap-3 align-items-center justify-content-center'>
           <button type="submit" className='btn btn-send btn-primary'>{location === '/register' ? 'Register' : 'Log In'}</button>
           {location !== '/login' 
           ? (

@@ -32,7 +32,7 @@ function TasksContainer() {
 
     <div>
       <SearchTask setToDoList={setToDoList} />
-      <DisplayTasks pending={pending} completed={completed}/>
+      <DisplayTasks pending={pending} completed={completed} />
     </div>
   )
 }
