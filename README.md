@@ -1,3 +1,5 @@
+``` THIS PROJECT WAS DONE FOR AN INTERVIEW ```
+
 # Getting Started with Create React App
 # THEORY OF REACT.JS
 
