@@ -96,7 +96,7 @@ function LoginForm() {
              type="password" 
              id="password" 
              onChange={(e) => setValue(e.target.value)}
-             placeholder='Password' 
+             placeholder={location === '/register' ? '' : 'Enter your password'}
              {...register('password', {
               required: true,
               minLength: 8,
@@ -110,7 +110,7 @@ function LoginForm() {
             </p>
             )}
           {location === '/register' 
-            ? <>
+            ? (<>
             <p className='col-xs-12 col-6 m-0 mx-auto' >
               Password must be:
             </p>
@@ -126,7 +126,7 @@ function LoginForm() {
                 <input className='form-control mt-2' type="password" id="confirm-password" value={confirmPassword} onChange={(e) => handleConfirmPasswordChange(e)} placeholder='Confirm password' />
                 {!passwordMatch && <p>Passwords must match.</p>}
             </div>
-            </>
+            </>)
             : null}  
         </div>
         <div className='d-flex flex-column flex-sm-row mt-4 gap-3 align-items-center justify-content-center'>
