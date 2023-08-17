@@ -7,15 +7,18 @@ import { setState, setToDo, deleteToDo } from '../reducer/toDosReducer';
 import { v4 as uuidv4 } from "uuid";
 import { firestore } from '../firebaseConfig';
 import { collection, arrayUnion, doc, setDoc } from '@firebase/firestore';
+import { useAuth } from '../context/AuthContext';
 
 function ModalEdit (props) {
 
     const [ task, setTask ] = useState('')
     const [ date, setDate ] = useState('')
 
+    const { currentUser } = useAuth();
+
     const toDos = useSelector(state => state.toDos.toDos)
-    const tasksRef = collection(firestore, 'tasksManager')
-    const docRef = doc(tasksRef, 'tasks')
+    const tasksRef = collection(firestore, 'users')
+    const docRef = doc(tasksRef, currentUser.uid)
 
     const dispatch = useDispatch();
 
@@ -24,10 +27,6 @@ function ModalEdit (props) {
         setTask(props.item.task)
 
         if (props.item.date){
-          // let date = new Date(props.item.date)
-          // let offset = date.getTimezoneOffset()
-          // let newDate = new Date(date.setMinutes(date.getMinutes() - offset)).toLocaleString()
-          // let final = new Date(newDate).toISOString().slice(0, -8);
           setDate(props.item.date)
         }
       }
@@ -37,6 +36,7 @@ function ModalEdit (props) {
 
         event.preventDefault();
         let id;
+
         props.item ? id = props.item.id : id = uuidv4();
 
         let newDate = ''
@@ -47,7 +47,7 @@ function ModalEdit (props) {
             id: id,
             task: task,
             complete: false,
-            date: newDate
+            date: newDate,
         }
 
         if (props.item) {

@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from '@firebase/firestore'
+import { getFirestore } from '@firebase/firestore';
+import 'firebase/auth';
+import 'firebase/database';
 
 const APIKEY = process.env.REACT_APP_APIKEY;
 const MESSAGINGID = process.env.REACT_APP_MESSAGINGID;
@@ -19,3 +21,4 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const firestore = getFirestore(app);
+export default app;

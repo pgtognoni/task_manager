@@ -6,13 +6,16 @@ import TaskTemplate from './TaskTemplate';
 import TooglePending from './TooglePending';
 import { collection,  doc, setDoc } from '@firebase/firestore';
 import { firestore } from '../firebaseConfig';
+import { useAuth } from '../context/AuthContext';
 
 function DisplayTasks({ pending, completed }) {
 
   const dispatch = useDispatch();
-  const tasksRef = collection(firestore, 'tasksManager')
-  const docRef = doc(tasksRef, 'tasks')
+  const { currentUser } = useAuth();
+
   const toDos = useSelector(state => state.toDos.toDos)
+  const tasksRef = collection(firestore, 'users')
+  const docRef = doc(tasksRef, currentUser.uid)
 
   const [ dropIndex, setDropIndex ] = useState(null)
   const [ startIndex, setStartIndex ] = useState(null)

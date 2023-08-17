@@ -5,13 +5,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { deleteToDo } from '../reducer/toDosReducer'
 import { firestore } from '../firebaseConfig';
 import { collection,  doc, setDoc } from '@firebase/firestore';
+import { useAuth } from '../context/AuthContext';
 
 function ModalDelete (props) {
 
     const dispatch = useDispatch()
-    const tasksRef = collection(firestore, 'tasksManager')
-    const docRef = doc(tasksRef, 'tasks')
+    const { currentUser } = useAuth();
+
     const toDos = useSelector(state => state.toDos.toDos)
+    const tasksRef = collection(firestore, 'users')
+    const docRef = doc(tasksRef, currentUser.uid)
 
     const handleDelete = async (id, item) => {
         dispatch(deleteToDo(id))

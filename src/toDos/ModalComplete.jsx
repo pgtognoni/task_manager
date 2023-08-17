@@ -5,13 +5,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setState } from '../reducer/toDosReducer'
 import { collection,  doc, setDoc } from '@firebase/firestore';
 import { firestore } from '../firebaseConfig';
+import { useAuth } from '../context/AuthContext';
 
 function ModalComplete(props) {
 
     const dispatch = useDispatch()
+    const { currentUser } = useAuth();
+
     const toDos = useSelector(state => state.toDos.toDos)
-    const tasksRef = collection(firestore, 'tasksManager')
-    const docRef = doc(tasksRef, 'tasks')
+    const tasksRef = collection(firestore, 'users')
+    const docRef = doc(tasksRef, currentUser.uid)
 
     const handleClose = async (e, item) => {
         props.onHide();
@@ -45,8 +48,14 @@ function ModalComplete(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Footer>
-        <Button onClick={props.onHide} variant="outline-danger">No</Button>
-        <Button variant="success" onClick={(e) => handleClose(e, props.item)}>
+        <Button 
+          variant="outline-danger"
+          onClick={props.onHide}>
+          No
+        </Button>
+        <Button 
+          variant="success" 
+          onClick={(e) => handleClose(e, props.item)}>
            Yes
         </Button>
       </Modal.Footer>

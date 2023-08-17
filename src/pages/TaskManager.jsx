@@ -10,10 +10,10 @@ function TaskManager () {
   const dispatch = useDispatch()
 
   const getTasks = async () => {
-    const array = await getTaskList();
-    if (array) {
-      dispatch(setState(array))
-    }
+    // const array = await getTaskList();
+    // if (array) {
+    //   dispatch(setState(array))
+    // }
   }
 
   useEffect(() => {

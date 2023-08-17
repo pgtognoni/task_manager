@@ -2,12 +2,16 @@ import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
-import axios from 'axios';
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import 'firebase/auth';
+import '../firebaseConfig'
+import { createUser } from '../apiCalls';
+import { useAuth } from '../context/AuthContext';
 
 function LoginForm() {
 
-
-    const { register, handleSubmit, setValue, watch, reset, formState: { errors } } = useForm();
+    const { setPending, setCurrentUser } = useAuth();
+    const { register,  setValue, watch, reset, formState: { errors } } = useForm();
     
     const [confirmPassword, setConfirmPassword] = useState('');
     const [passwordMatch, setPasswordMatch] = useState(true);
@@ -24,33 +28,54 @@ function LoginForm() {
     };
     
     const handleFormSubmit = async (event) => {
+      event.preventDefault();      
       
-      const user = {
-        email: email,
-        password: password
-      }
+      let userEmail = email;
+      let userPassword = password;
 
-      try { 
-        const response = await axios.post(
-          `https://us-central1-doose-manager.cloudfunctions.net/${ location === '/register' ? 'registerUser' : 'loginUser' }`, 
-          user,
-          {headers: { 'Access-Control-Allow-Origin': '*'}})
-        if (response.status === 200) {
-          navigate('/userLogged')
+      let auth = getAuth();
+
+      try {
+
+        const userCredential = location === '/register' 
+          ? await createUserWithEmailAndPassword(auth, userEmail, userPassword)
+          : await signInWithEmailAndPassword(auth, userEmail, userPassword);
+
+        const user = userCredential.user;
+
+        if (user && location === '/register') {
+
+          const newUser = {
+            email: userEmail,
+            toDos: []
+          }
+
+          navigate('/login')
           reset({});
           setConfirmPassword('')
-          console.log(response.data)
+          createUser(user.uid, newUser)
+
+        } else {
+
+          navigate('/taskmanager')
+          reset({});
+          setConfirmPassword('')
+          setPending(false);
+          // setCurrentUser(user);
+
         }
       } catch (error) {
-        console.log(error);
+        alert(error.message)
+        console.log('Registration error:', error);
       }
+      
      };
 
 
   return (
     <div className='container'>
       <div className='row'>
-      <form onSubmit={handleSubmit(handleFormSubmit)} className='col container'>
+      <form onSubmit={(e) => handleFormSubmit(e)} className='col container'>
         <div className='mx-auto'>
           <div className='col-xs-12 col-6 form-group mt-5 mx-auto'>
             <label htmlFor="email">Email</label>

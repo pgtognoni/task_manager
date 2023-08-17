@@ -25,7 +25,7 @@ function HomePage() {
           <li>Customise your reminders</li>
           <li>And much more...</li>
         </ul>
-        <h2 className='text-center m-3 p-3 start mx-auto'><Link to='/taskmanager'>Start Now</Link></h2>
+        <h2 className='text-center m-3 p-3 start mx-auto'><Link to='/login'>Start Now</Link></h2>
       </section>
       <section className='section sec-3 p-3 mt-3 mx-auto d-flex justify-content-center align-items-center'>
         <div className='purple-box'></div>
