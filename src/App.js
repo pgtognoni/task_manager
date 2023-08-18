@@ -11,6 +11,7 @@ import LogIn from './pages/LogIn';
 import Register from './pages/Register';
 import UserLogged from './pages/UserLogged';
 import { useAuth } from './context/AuthContext';
+import Calendar from './generalComponents/Calendar/Calendar';
 
 function App() {
   
@@ -23,7 +24,12 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/login' element={<LogIn />} />
         <Route path='/register' element={<Register />} />
-        {currentUser && <Route path='/taskmanager' element={<TaskManager />} />}
+        {currentUser && 
+        <>
+          <Route path='/taskmanager' element={<TaskManager />} />
+          <Route path='/calendar' element={<Calendar />} />
+        </>
+        }
         <Route path='/userLogged' element={<UserLogged />} />
         
         <Route path="*" element={<h1>Not Found...</h1>} />

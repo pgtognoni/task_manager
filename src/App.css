@@ -5,7 +5,7 @@
   --navbar-bg-color:#a018fb; 
   --navbar-brand-color: #f6fa00;
   --text-white: #f3f3f3;
-  --gray-box-background: #f7f7f7;
+  --gray-box-background: #220377;
   --green-bg: rgb(5, 202, 5);
   --draggable: #a018fb1e;
 }
@@ -18,7 +18,9 @@
 }
 
 body {
-  color: #474747 !important;
+  color: #f6f6f6 !important;
+  background-color: #02074b !important;
+  height: 100vh;
 }
 
 button {

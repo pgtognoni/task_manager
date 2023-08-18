@@ -1,0 +1,451 @@
+.userCalendar-container {
+  padding: 3rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+@media screen and (max-width: 1299px) {
+    .dashboard-container {
+      gap: 15px;
+    }  
+  }
+  
+  @media screen and (max-width: 900px) {
+    .dashboard-container {
+      gap: 0px;
+    }  
+  
+    .dashboard-fullCalendar .fc .fc-button {
+      font-size: calc(1rem * .7)
+    }
+  }
+  
+  .dashboard-fullCalendar .fc {
+    position: relative;
+  }
+  
+  .dashboard-fullCalendar .fc-header-toolbar.fc-toolbar {
+    margin: 1rem auto;
+  }
+  
+  .dashboard-fullCalendar .fc-toolbar-chunk button {
+    text-transform: capitalize;
+  }
+  
+  .dashboard-fullCalendar .fc-direction-ltr .fc-toolbar > * > :not(:first-child) {
+    margin-left: 0;
+  }
+  
+  .dashboard-fullCalendar .fc-dayGridWeek-button,
+  .dashboard-fullCalendar .fc-dayGridMonth-button,
+  .dashboard-fullCalendar .fc-today-button,
+  .dashboard-fullCalendar .fc-next-button {
+    margin-left: 0 !important;
+  }
+  
+  .dashboard-fullCalendar .fc-dayGridDay-button {
+    border-radius: 10px 0 0 10px !important;
+  }
+  
+  .dashboard-fullCalendar .fc-dayGridWeek-button {
+    border-radius: 0 !important;
+  }
+  
+  .dashboard-fullCalendar .fc-dayGridMonth-button {
+    border-radius: 0 10px 10px 0 !important;
+  }
+  
+  .dashboard-fullCalendar .fc-button-primary {
+    background: rgba(255, 255, 255, 0.15) !important;
+  }
+  
+  .dashboard-fullCalendar .fc-button-primary:focus {
+    box-shadow: none !important;
+  }
+  
+  .dashboard-fullCalendar .fc-button-active {
+    background: #170556 !important;
+    border-radius: 10px !important;
+  }
+  
+  .dashboard-fullCalendar .fc-toolbar-title {
+    color: #fff;
+    font-size: 1.20rem;
+  }
+  
+  @media only screen and (max-width: 900px) {
+    .dashboard-fullCalendar .fc-toolbar-title {
+      font-size: calc(1.2rem * .8)
+    }
+  }
+  
+  @media screen and (max-width: 560px) {
+  
+    .dashboard-fullCalendar .fc-header-toolbar.fc-toolbar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+    }
+  
+    .dashboard-fullCalendar .fc-toolbar-chunk:nth-child(3) {
+      display: none;
+    }
+  }
+  
+  .dashboard-fullCalendar .fc-toolbar-chunk:nth-child(3) {
+    background: #170556 !important;
+    border-radius: 10px; 
+  }
+
+  /* STUDENT */ 
+  .student.dashboard-fullCalendar .fc-button-active, 
+  .student.dashboard-fullCalendar .fc-toolbar-chunk:nth-child(3) {
+    border: 2px solid #ffa60e !important;
+  }
+
+  /* TEACHER */ 
+  .userCalendar.dashboard-fullCalendar .fc-button-active,
+  .userCalendar.dashboard-fullCalendar .fc-toolbar-chunk:nth-child(3) {
+    border: 2px solid #44E5DD !important;
+  }
+  
+  .dashboard-fullCalendar  .fc-prev-button,
+  .dashboard-fullCalendar  .fc-today-button,
+  .dashboard-fullCalendar  .fc-next-button,
+  .dashboard-fullCalendar button.fc--button.fc-button.fc-button-primary {
+    background: transparent !important;
+    border: none;
+    margin: 0;
+  }
+    
+  .dashboard-fullCalendar  .fc .fc-button .fc-icon {
+    font-size: 1.3em;
+    vertical-align: middle;
+  }
+    
+  .dashboard-fullCalendar .fc-button:disabled {
+    opacity: 1 !important;
+  }
+  
+  .dashboard-fullCalendar .fc-col-header,
+  .dashboard-fullCalendar .fc-daygrid-body,
+  .dashboard-fullCalendar table.fc-scrollgrid-sync-table {
+    width: 100% !important;
+  }
+  
+  .dashboard-fullCalendar .fc-theme-standard .fc-scrollgrid,
+  .dashboard-fullCalendar .fc-theme-standard td,
+  .dashboard-fullCalendar .fc-theme-standard th {
+    border: none;
+  }
+  
+  .dashboard-fullCalendar .fc-theme-standard td,
+  .dashboard-fullCalendar .fc-theme-standard th {
+    border-left: 1px solid rgba(255, 255, 255, 0.20);
+    border-right: 1px solid rgba(255, 255, 255, 0.20);
+  }
+  
+  .dashboard-fullCalendar .fc-theme-standard td {
+    border-top: 1px solid rgba(255, 255, 255, 0.20);
+  }
+  
+  .dashboard-fullCalendar .fc-theme-standard td:nth-child(1),
+  .dashboard-fullCalendar .fc-theme-standard th:nth-child(1) {
+    border-left: none;
+  }
+  
+  .dashboard-fullCalendar .fc-theme-standard td:last-child,
+  .dashboard-fullCalendar .fc-theme-standard th:last-child {
+    border-right: none;
+  }
+  
+  .dashboard-fullCalendar .fc-scrollgrid-sync-inner,
+  .dashboard-fullCalendar .fc-daygrid-day.fc-day-today {
+    background: transparent;
+  }
+  
+  .dashboard-fullCalendar .fc-col-header {
+    border-radius: 12px 12px 0px 0px;
+    background: rgba(255, 255, 255, 0.20);
+  }
+  
+  .dashboard-fullCalendar .fc-col-header-cell-cushion,
+  .dashboard-fullCalendar .fc-daygrid-day-number {
+    /* color: #fff; */
+    text-decoration: none !important;
+  }
+  
+  .dashboard-fullCalendar tr[role='row'] a {
+    color: #fff;
+  }
+  
+  .fc-col-header-cell-cushion {
+    padding: 12px 0px;
+  }
+  
+  .fc-col-header-cell-cushion:hover {
+    color: #fff !important;
+  }
+  
+  .fc-scroller {
+    overflow: hidden auto !important;
+  }
+  
+  .fc-scroller::-webkit-scrollbar {
+    display: block !important;
+  }
+  
+  .fc-scroller::-webkit-scrollbar-track,
+  .fc-scroller::-webkit-scrollbar-thumb {
+    border-radius: 50px !important;
+  }
+  
+  .fc-scroller::-webkit-scrollbar-track {
+    background: #f9f9f9 !important;
+  }
+  
+  .fc-scroller::-webkit-scrollbar-thumb {
+    background: linear-gradient(#439bb8, #5d2fa7) !important;
+    border: 2px solid #f9f9f9 !important;
+  }
+  
+  .custom-container {
+    display: flex !important;
+  }
+  
+  .custom-content {
+    width: 100% !important;
+    background-color: lightblue !important;
+    padding: 10px !important;
+    margin-right: 10px !important;
+    color: #000 !important;
+  }
+  
+  /*** DATEPICKER ***/
+  /*** DATEPICKER ***/
+  
+  .secondary-calendar {
+    margin-top: 3rem;
+  }
+  
+  .secondary-calendar > div {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  @media screen and (max-width: 1199px) {
+    .secondary-calendar > div {
+      margin-right: .5rem;
+    }
+  }
+  
+  
+  .secondary-calendar .react-datepicker,
+  .secondary-calendar .react-datepicker__header {
+    background: transparent;
+    border: none;
+    color: #fff;
+  }
+  
+  .secondary-calendar .react-datepicker__day,
+  .secondary-calendar .react-datepicker__time-name,
+  .secondary-calendar .react-datepicker__current-month, 
+  .secondary-calendar .react-datepicker-time__header, 
+  .secondary-calendar .react-datepicker-year-header {
+    color: #fff;
+  }
+  
+  /* STUDENT */
+  .student.secondary-calendar .react-datepicker__day[aria-selected='true'] {
+    background: #FFDD0D !important;
+    color: #FFA60E !important;
+    border-radius: 50%;
+  }
+  /* TEACHER */
+  .teacher.secondary-calendar .react-datepicker__day[aria-selected='true'] {
+    background: #44E5DD !important;
+    color: #170556!important;
+    border-radius: 50%;
+  }
+  
+  .secondary-calendar .react-datepicker__day-name,
+  .secondary-calendar .react-datepicker__day,
+  .secondary-calendar .react-datepicker__time-name {
+    width: 1.5rem;
+    margin: 0.15rem;
+    line-height: 1.3rem
+  }
+  
+  @media screen and (max-width: 960px) {
+  
+    .secondary-calendar > div {
+      justify-content: flex-start;
+    }
+  
+    .secondary-calendar .react-datepicker__day-name,
+    .secondary-calendar .react-datepicker__day,
+    .secondary-calendar .react-datepicker__time-name {
+      width: 1.1rem;
+      margin: 0.11rem;
+      line-height: 1.1rem;
+      font-size: .6rem;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+  
+    .secondary-calendar {
+      margin-top: 1rem;
+    }
+  
+    .secondary-calendar > div {
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+  
+    .secondary-calendar .react-datepicker__day-name,
+    .secondary-calendar .react-datepicker__day,
+    .secondary-calendar .react-datepicker__time-name {
+      width: 1.8rem;
+      margin: 0.13rem;
+      line-height: 1.8rem;
+      font-size: 1rem;
+    }
+  }
+  
+  .secondary-calendar .react-datepicker__header {
+    padding: 0;
+  }
+  
+  .secondary-calendar .react-datepicker__day-names,
+  .secondary-calendar .react-datepicker__month  {
+    background: rgba(255, 255, 255, 0.30);
+    padding: 0 1rem;
+  }
+  
+  .secondary-calendar .react-datepicker__day-names {
+    border-radius: 20px 20px 0 0;
+    margin-bottom: 0;
+    padding-top: .5rem;
+    border-bottom: 1px solid #170556;
+    margin-top: 1.5rem;
+  }
+  
+  .react-datepicker__navigation--previous {
+    top: 6px;
+    left: 23px;
+  }
+  .react-datepicker__navigation--next {
+    top: 6px;
+    right: 23px;
+  }
+  
+  .secondary-calendar .react-datepicker__month {
+    border-radius: 0 0 20px 20px;
+    padding-bottom: .5rem;
+    margin: 0;
+  }
+  
+  .secondary-calendar .react-datepicker__current-month,
+  .secondary-calendar .react-datepicker__navigation--next,
+  .secondary-calendar .react-datepicker__navigation--previous {
+    display: none;
+  }
+  
+  .secondary-calendar .react-datepicker__current-month {
+    border-radius: 12px;
+    border: 2px solid #FFA60E;
+    padding: .2rem 0;
+    margin: auto;
+    width: 80%;
+  }
+  
+  .secondary-calendar .react-datepicker__day-name:nth-child(1),
+  .secondary-calendar .react-datepicker__day-name:nth-child(7),
+  .secondary-calendar .react-datepicker__day--weekend {
+    color: #B2B2B2;
+  }
+  
+  /*** STUDENTS EVENTS ***/
+  /*** STUDENTS EVENTS ***/
+  
+  .events-title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.20);
+    border-top: 1px solid black;
+    padding: .3rem 2.3rem .3rem 2rem;
+  }
+  
+  .events-title-bar span {
+    color: #fff;
+  }
+  
+  .events-title-bar span:nth-child(2) {
+    margin-right: 2rem;
+  }
+  
+  .event-container {
+    justify-content: space-between; 
+    align-items: center;
+    border-radius: 10px;
+    gap: 1rem;
+    padding: .5rem 1rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  
+  .teacher .event-container {
+    cursor: pointer;
+  }
+  
+  .month-container {
+    padding: .5rem 0rem;
+  }
+  
+  .month-container > div {
+    min-width: 100px;
+  }
+  
+  .week-container {
+    padding: .5rem 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: .2rem;
+  }
+  
+  .event-title,
+  .event-time {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 5px;
+  }
+  
+  .event-time {
+    justify-content: center;
+  }
+  
+  
+  .event-img img {
+    width: 80%;
+  }
+  
+  .week-container .event-img img {
+    width: 25px;
+  }
+  
+  .event-container .week-container p,
+  .event-container p {
+    text-align: left;
+    vertical-align: middle;
+    margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }

@@ -27,6 +27,7 @@ function NavbarCollapse() {
             ? <Nav.Link href="/login">Log In</Nav.Link>
             : <>
                 <Nav.Link href="/taskmanager">Task Manager</Nav.Link>
+                <Nav.Link href="/calendar">Calendar</Nav.Link>
                 <Nav.Link href="/" onClick={() => handleLogOut()}>Log Out</Nav.Link>
               </>
             }
