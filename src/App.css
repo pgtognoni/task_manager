@@ -10,6 +10,8 @@
   --draggable: #a018fb1e;
   --border-box: #44E5DD;
   --table-background: #111e58ca;
+  --linear-gradient: linear-gradient(to right, #f6fa00, #faab00);
+  --orange: #faab00;
 }
 
 * {
@@ -84,14 +86,33 @@ nav .navbar-toggler {
   border: 2px solid var(--navbar-brand-color);
 }
 
+@media screen and (max-width: 576px) {
+
+  .log-btn-container {
+    border-top: var(--navbar-brand-color) 1px solid;
+    margin-top: 1rem;
+  }
+
+  .btn-log {
+    border: none;
+    padding: .5rem 0 !important;
+  }
+}
+
 /* HOME PAGE */
 
 .section {
   font-size: 1.2rem;
   letter-spacing: .05rem;
-  border-bottom: 1px solid var(--navbar-bg-color);
   position: relative;
   max-width: 768px;
+  color: var(--text-white);
+}
+
+.section-text {
+  border: 2px solid var(--border-box);
+  padding: 1rem 1.5rem;
+  border-radius: 25px;
 }
 
 .brand-name {
@@ -134,25 +155,32 @@ li::before {
 .purple-box {
   position: absolute;
   height: 100%;
-  width: 70%;
+  width: 90%;
   z-index: -1;
   transform: skew(-5deg);
-  background-color: var(--navbar-bg-color);
-  box-shadow: 5px 5px 0 #c1c1c1;
+  background: var(--linear-gradient);
+  box-shadow: 5px 5px 0 var(--navbar-brand-color);
 }
 
+
+
 h2.member a {
-  color: var(--navbar-brand-color)
+  color: var(--navbar-bg-color);
+  text-shadow: 1px 0 0 var(--navbar-brand-color);
+  font-size: 2.5rem;
+  width: 80%;
 }
 
 /* TASK MANAGER */
 
 .tasks-container {
-  margin-top: 3rem;
+  margin-top: 2rem;
+  padding: 1rem;
 }
 
 .task-manager {
   max-width: 768px;
+  overflow-x: scroll;
 }
 
 .add-new {
@@ -187,6 +215,21 @@ h2.member a {
   outline: none;
 }
 
+@media screen and (max-width: 576px) {
+
+    .add-new,
+    .search-task {
+      width: 80%;
+      margin: auto;
+    }
+
+    .search-task {
+      margin-top: 1.5rem;
+    }
+}
+
+/* TABLE */
+
 .table-container {
   background-color: var(--table-background);
   padding: 2rem;
@@ -196,6 +239,22 @@ h2.member a {
 
 .toogle-task {
   font-size: 1.1rem;
+}
+
+.toogle-task th {
+  text-align: center;
+}
+
+@media screen and (max-width: 576px) {
+  
+  .tasks-container {
+    padding: .2rem;
+  }
+
+  .table-container {
+    padding: .5rem;
+  }
+  
 }
 
 @media screen and (max-width: 430px) {

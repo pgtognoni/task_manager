@@ -23,11 +23,11 @@ function NavbarCollapse() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto d-flex justify-content-between container-fluid">
-            <div className='d-flex'>
+            <div className='d-flex flex-column flex-sm-row'>
               {currentUser && <Nav.Link href="/taskmanager">Task Manager</Nav.Link>}
               {currentUser && <Nav.Link href="/calendar">Calendar</Nav.Link>}
             </div>
-            <div>
+            <div className='log-btn-container'>
               {!currentUser 
                 ? <Nav.Link href="/login" className='btn-log'>Log In</Nav.Link>
                 : <Nav.Link href="/" onClick={() => handleLogOut()} className='btn-log'>Log Out</Nav.Link>

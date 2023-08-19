@@ -34,7 +34,7 @@ function TaskManager () {
 
   return (
     <div className='tasks-container'>
-      <div className='d-flex justify-content-center gap-3'>
+      <div className='d-flex flex-column flex-sm-row justify-content-center gap-3'>
         <AddNew />
         <SearchTask setToDoList={setToDoList} />
       </div>

@@ -9,8 +9,7 @@ function TooglePending({ setShowPending, showPending }) {
   return (
     <thead className='toogle-task'>
       <tr className='text-white'>
-        <th >Show: </th>
-        <th colSpan={3}>
+        <th colSpan={4}>
           <label htmlFor='pending' className='mx-1 text-danger' >Pending</label>
           <input type="radio" name="option" value="true" checked={showPending === true} onChange={handleToogle} />
         </th>
