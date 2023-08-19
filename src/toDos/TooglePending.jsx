@@ -8,14 +8,14 @@ function TooglePending({ setShowPending, showPending }) {
 
   return (
     <thead className='toogle-task'>
-      <tr>
+      <tr className='text-white'>
         <th >Show: </th>
         <th colSpan={3}>
-          <label htmlFor='pending' className='mx-1' >Pending</label>
+          <label htmlFor='pending' className='mx-1 text-danger' >Pending</label>
           <input type="radio" name="option" value="true" checked={showPending === true} onChange={handleToogle} />
         </th>
         <th colSpan={3}>
-          <label htmlFor='completed' className='mx-1'>Completed</label>
+          <label htmlFor='completed' className='mx-1 text-green'>Completed</label>
           <input type="radio" name="option" value="false" checked={showPending === false} onChange={handleToogle} />
         </th>
       </tr>

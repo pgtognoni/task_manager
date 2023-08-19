@@ -9,7 +9,7 @@ function MarkComplete({item, index }) {
     
   return (
     <td colSpan={2}>
-      <button onClick={() => setModalShow(true)}>
+      <button onClick={() => setModalShow(true)} className='complete-btn text-white'>
         <FontAwesomeIcon icon={faCheckCircle} 
         style={item.complete === false ? {color: '#c9c9c9'} : {color: 'green'}}
         className={'mx-2'}

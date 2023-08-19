@@ -98,13 +98,6 @@
     border-radius: 10px; 
   }
 
-  /* STUDENT */ 
-  .student.dashboard-fullCalendar .fc-button-active, 
-  .student.dashboard-fullCalendar .fc-toolbar-chunk:nth-child(3) {
-    border: 2px solid #ffa60e !important;
-  }
-
-  /* TEACHER */ 
   .userCalendar.dashboard-fullCalendar .fc-button-active,
   .userCalendar.dashboard-fullCalendar .fc-toolbar-chunk:nth-child(3) {
     border: 2px solid #44E5DD !important;

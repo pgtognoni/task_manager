@@ -14,7 +14,7 @@ function SearchTask({ setToDoList }) {
     }
 
   return (
-    <div className='add-new search-task d-flex justify-content-between align-items-center mx-auto m-3 py-2 px-4'>
+    <div className='add-new search-task d-flex justify-content-between align-items-center'>
         <label htmlFor="search"><FontAwesomeIcon icon={faSearch} ></FontAwesomeIcon></label>
         <input type="text" id="search" placeholder="Search..." onChange={e => handleSearch(e)}/>
     </div>

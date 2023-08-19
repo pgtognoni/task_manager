@@ -23,18 +23,18 @@ function TaskTemplate(props) {
             onDragOver={(e) => handleDragOver(e, toDo.id)}
             onDragEnter={() => handleDragEnter(index, toDo.id)}
             onDragLeave={() => handleDragLeave(toDo.id)}
-            className='task-text'
+            className='task-text text-white'
         >
         <MarkComplete item={toDo} index={index} />
         {toDo.complete === false 
             ? <td
                 draggable={toDo.complete === false ? 'true' : 'false'} 
                 onDragStart={(e) => handleDragStart(e, index)}             
-                ><FontAwesomeIcon icon={faGripLines} style={{color: 'gray'}} className='moveTask'/></td>
+                ><FontAwesomeIcon icon={faGripLines} className='moveTask'/></td>
             : <td></td>
         }
-          <td>{toDo.task}</td>
-          <td>{toDo.date ? new Date(toDo.date).toLocaleString('en-GB', options) : null}</td>
+          <td className='task-text text-white'>{toDo.task}</td>
+          <td className='task-text text-white'>{toDo.date ? new Date(toDo.date).toLocaleString('en-GB', options) : null}</td>
           <EditTask item={toDo} index={index} />
           <DeleteTask id={toDo.id} item={toDo} />
       </tr>

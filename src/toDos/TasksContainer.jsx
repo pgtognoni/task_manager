@@ -3,35 +3,11 @@ import { useSelector } from 'react-redux'
 import DisplayTasks from './DisplayTasks'
 import SearchTask from './SearchTask'
 
-function TasksContainer() {
-
-    const toDos = useSelector(state => state.toDos.toDos)
-    
-    const [ pending, setPending ] = useState([])
-    const [ completed, setCompleted ] = useState([]);
-    const [ toDoList, setToDoList ] = useState([])
-
-    useEffect(() => {
-
-      setToDoList(toDos)
-
-    }, [toDos])
-
-
-    useEffect(() => {
-
-      const newPending = toDoList.filter(item => item.complete === false)
-      const newCompleted = toDoList.filter(item => item.complete === true)
-
-      setPending(newPending)
-      setCompleted(newCompleted)
-
-    }, [toDoList])
+function TasksContainer({ pending, completed }) {
 
   return (
 
-    <div>
-      <SearchTask setToDoList={setToDoList} />
+    <div className='tasks-container'>
       <DisplayTasks pending={pending} completed={completed} />
     </div>
   )

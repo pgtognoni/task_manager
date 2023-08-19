@@ -2,12 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
 :root {
-  --navbar-bg-color:#a018fb; 
+  --navbar-bg-color:#0e0246; 
   --navbar-brand-color: #f6fa00;
   --text-white: #f3f3f3;
-  --gray-box-background: #220377;
+  --box-background: #15266fca;
   --green-bg: rgb(5, 202, 5);
   --draggable: #a018fb1e;
+  --border-box: #44E5DD;
+  --table-background: #111e58ca;
 }
 
 * {
@@ -18,8 +20,7 @@
 }
 
 body {
-  color: #f6f6f6 !important;
-  background-color: #02074b !important;
+  background-color: #040a52 !important;
   height: 100vh;
 }
 
@@ -43,10 +44,14 @@ a {
   text-decoration: none !important;
 }
 
+#root>div:nth-child(2) {
+  padding-top: 3rem;
+}
+
 /* NAVBAR */
 
 nav {
-  box-shadow: 0 3px 5px #ccc;
+  box-shadow: 0 3px 5px #03496f;
 }
 
 nav.bg-dark {
@@ -67,6 +72,16 @@ nav .nav-link {
 
 nav .navbar-toggler {
   color: var(--text-white);
+}
+
+.btn-log {
+  background-color: var(--navbar-bg-color);
+  color: var(--navbar-brand-color);
+  border-radius: 50px;
+  font-size: 1rem !important;
+  font-weight: 500;
+  padding: .5rem 1rem !important;
+  border: 2px solid var(--navbar-brand-color);
 }
 
 /* HOME PAGE */
@@ -100,7 +115,7 @@ li::before {
   width: 90%;
   height: 90%;
   z-index: -1;
-  background-color: var(--gray-box-background);
+  background-color: var(--box-background);
   transform: skew(-5deg);
 }
 
@@ -132,25 +147,51 @@ h2.member a {
 
 /* TASK MANAGER */
 
+.tasks-container {
+  margin-top: 3rem;
+}
+
 .task-manager {
   max-width: 768px;
 }
 
 .add-new {
-  background-color: var(--gray-box-background);
-  width: 60%;
+  background-color: var(--box-background);
   border-radius: 50px;
   font-size: 1.2rem;
+  border: 2px solid var(--green-bg) !important;
+  padding: .5rem 1.5rem !important;
+}
+
+.add-new button svg {
+  color: var(--green-bg);
+}
+
+.search-task {
+  background-color: transparent;
+  border: 2px solid var(--border-box) !important;
+}
+
+.search-task label svg {
+  color: var(--border-box);
+  margin-right: .5rem;
 }
 
 .search-task input {
   width: 90%;
   border: none;
-  background-color: var(--gray-box-background);
+  background-color: transparent;
 }
 
 .search-task input:focus {
   outline: none;
+}
+
+.table-container {
+  background-color: var(--table-background);
+  padding: 2rem;
+  border: 2px solid var(--border-box);
+  border-radius: 25px;
 }
 
 .toogle-task {
@@ -169,6 +210,10 @@ h2.member a {
 
 }
 
+td[draggable='true'] svg {
+  color: var(--border-box)
+}
+
 .drag {
   background-color: var(--draggable);
 }
@@ -183,6 +228,10 @@ h2.member a {
 
 .text-right {
   text-align: right;
+}
+
+.text-white {
+  color: var(--text-white);
 }
 
 .text-purple {
