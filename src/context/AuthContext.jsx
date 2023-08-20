@@ -3,7 +3,7 @@ import { getAuth, onAuthStateChanged, browserLocalPersistence, setPersistence } 
 import '../firebaseConfig'
 import { getTaskList } from '../apiCalls';
 import { useDispatch } from 'react-redux';
-import { setState } from '../reducer/toDosReducer';
+import { setState, setEvents } from '../reducer/toDosReducer';
 
 const Auth = createContext();
 export const useAuth = () => useContext(Auth);
@@ -22,12 +22,24 @@ function AuthContext({children}) {
         
         
         let unsubscribe = onAuthStateChanged(auth, async (user) => {
+            if (user){
             setCurrentUser(user);
             setPersistence(auth, browserLocalPersistence);
             setUserId(user.uid)
             window.localStorage.setItem('userId', user.uid)
             const array = await getTaskList(user.uid);
+            let events; 
+            if (array.length){
+             events = array.map((toDo) => ({
+                title: toDo.task,
+                start: toDo.date,
+                description: toDo.complete
+                }))
+                console.log(events)
+                dispatch(setEvents(events));
+            }
             dispatch(setState(array));
+        }
         });
 
         return unsubscribe;

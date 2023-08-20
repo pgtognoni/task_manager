@@ -1,15 +1,17 @@
 import React from 'react'
 
-function EventFullCalendar({info, view}) {
+function EventFullCalendar({ info, view }) {
 
-    const {event} = info;
+    const { event } = info;
     const date = new Date(event.start);
+    console.log(event)
     const time = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });   
 
     return (
-        <div className='container-fluid'>
+        <div className={`container-fluid event-container
+         ${event.extendedProps.description ? 'completed' : 'pending'}`}>
         <div 
-          className={`row flex-nowrap event-container ${view === 'dayGridWeek' 
+          className={`row flex-nowrap ${view === 'dayGridWeek' 
               ? 'week-container' 
               : view === 'dayGridMonth' ? 'month-container' : ''}`} 
           >

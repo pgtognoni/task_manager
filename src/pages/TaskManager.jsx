@@ -24,8 +24,8 @@ function TaskManager () {
 
   useEffect(() => {
 
-    const newPending = toDoList.filter(item => item.complete === false)
-    const newCompleted = toDoList.filter(item => item.complete === true)
+    const newPending = toDoList?.filter(item => item.complete === false)
+    const newCompleted = toDoList?.filter(item => item.complete === true)
 
     setPending(newPending)
     setCompleted(newCompleted)

@@ -23,13 +23,13 @@ function Calendar() {
     }
   */
 
-    const toDos = useSelector(state => state.toDos.toDos)
+    const stateEvents = useSelector(state => state.toDos.events)
   
   const calendarRef = useRef(null)
   const profileView = 'userCalendar'
   const [ events, setEvents ] = useState([]);
   const [ selectedDate, setSelectedDate ] = useState(null);
-  const [ calendarView, setCalendarView ] = useState('');
+  const [ calendarView, setCalendarView ] = useState('dayGridMonth');
   const [ calendarHeight, setCalendarHeight ] = useState('');
   const [ seeEventDetails, setSeeEventDetails ] = useState({
     showDetails: false,
@@ -38,22 +38,20 @@ function Calendar() {
     date: ''
   })
 
+  const fetchEvents = () => {
+    const events = stateEvents
+    console.log(stateEvents)
+    if (stateEvents) setEvents(stateEvents)
+  }
+
   useEffect(() => {
     // USE EFFECT TO FETCH DATA/EVENTS ONLY
-    
-    const fetchEvents = () => {
-      const events = toDos.map((toDo) => ({
-        title: toDo.task,
-        start: toDo.date
-      }))
-      console.log(toDos, events)
-      setEvents(events)
-    }
+  
 
     fetchEvents()
     setCalendarView('dayGridMonth') 
 
-  }, [])
+  }, [stateEvents])
 
   useEffect(() => {
     // USEEFFECT TO CHANGE THE DISPLAY OF THE CALENDAR ON WINDOW RESIZE - CHANGE WIDTH

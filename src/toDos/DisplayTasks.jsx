@@ -50,10 +50,7 @@ function DisplayTasks({ pending, completed }) {
 
   return (
     <div className='m-3 task-manager mx-auto table-container'>
-    <Table 
-      striped
-      hovered
-      >
+    <Table striped>
       <TooglePending setShowPending={setShowPending} showPending={showPending} />
       <tbody>
       <tr>

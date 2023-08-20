@@ -9,8 +9,10 @@ export const getTaskList = async (userId) => {
     const usersRef = collection(firestore, 'users');
     const userDocRef = doc(usersRef, userId);
     const user = await getDoc(userDocRef)
-    const array = user.data().toDos
-    return array
+    if (user.data()) {
+      const array = user.data().toDos
+      return array
+    }
 }
 
 export const createUser = async (userId, userData) => {

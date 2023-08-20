@@ -404,6 +404,14 @@
     align-items: flex-start;
     gap: .2rem;
   }
+
+  .event-container.completed {
+    background-color: #32ac32d2;
+  }
+
+  .event-container.pending {
+    background-color: #fb5c00cf;
+  }
   
   .event-title,
   .event-time {
@@ -416,15 +424,6 @@
   
   .event-time {
     justify-content: center;
-  }
-  
-  
-  .event-img img {
-    width: 80%;
-  }
-  
-  .week-container .event-img img {
-    width: 25px;
   }
   
   .event-container .week-container p,
