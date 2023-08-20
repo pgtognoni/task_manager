@@ -80,6 +80,10 @@
   }
   
   @media screen and (max-width: 560px) {
+
+    .userCalendar-container {
+      padding: .5rem;
+    }
   
     .dashboard-fullCalendar .fc-header-toolbar.fc-toolbar {
       display: flex;
@@ -214,6 +218,12 @@
     padding: 10px !important;
     margin-right: 10px !important;
     color: #000 !important;
+  }
+
+  @media screen and (max-width: 560px) {
+    .dashboard-fullCalendar .fc-col-header {
+      font-size: .7em;
+    }
   }
   
   /*** DATEPICKER ***/
@@ -375,63 +385,77 @@
   }
   
   .event-container {
-    justify-content: space-between; 
+    display: flex;
+    justify-content: space-around; 
     align-items: center;
     border-radius: 10px;
-    gap: 1rem;
-    padding: .5rem 1rem;
+    gap: .2rem;
+    padding: 1rem;
     text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden;
   }
   
-  .teacher .event-container {
+  .event-container {
     cursor: pointer;
   }
-  
-  .month-container {
-    padding: .5rem 0rem;
-  }
-  
+    
   .month-container > div {
     min-width: 100px;
   }
-  
-  .week-container {
+
+  .dayGrid {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  /* .week-container,
+  .month-container {
     padding: .5rem 0;
+    display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: .2rem;
-  }
+  } */
 
   .event-container.completed {
-    background-color: #32ac32d2;
+    background-color: #d6f9d6e7;
   }
 
   .event-container.pending {
-    background-color: #fb5c00cf;
+    background-color: #fae3eee4;
   }
   
   .event-title,
   .event-time {
     display: flex;
     align-items: center;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    gap: 5px;
-  }
-  
-  .event-time {
+    /* flex-wrap: nowrap; */
     justify-content: center;
+    gap: 5px;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 1020px) {
+    
+    .week-container .event-title,
+    .month-container .event-title {
+      flex-direction: column;
+    }
+  }
+
+  
+  .week-container p {
+    text-align: center;
   }
   
-  .event-container .week-container p,
+  .event-container,
   .event-container p {
-    text-align: left;
+    text-align: center;
     vertical-align: middle;
     margin: 0;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    color: var(--navbar-bg-color);
   }

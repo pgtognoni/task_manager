@@ -39,8 +39,6 @@ function Calendar() {
   })
 
   const fetchEvents = () => {
-    const events = stateEvents
-    console.log(stateEvents)
     if (stateEvents) setEvents(stateEvents)
   }
 
@@ -164,7 +162,7 @@ function Calendar() {
     const calendarApi = calendarRef.current.getApi();
     calendarApi.changeView('dayGridDay')
     setCalendarView('dayGridDay')
-    eventDayDisplay()
+    // eventDayDisplay()
     getCaledandarHeight(setCalendarHeight)
     changeHeaderToolbar('dayGridDay')
   }
@@ -173,7 +171,7 @@ function Calendar() {
     const calendarApi = calendarRef.current.getApi();
     calendarApi.changeView('dayGridWeek')
     setCalendarView('dayGridWeek')
-    eventWeekDisplay()
+    // eventWeekDisplay()
     getCaledandarHeight(setCalendarHeight)
     changeHeaderToolbar('dayGridWeek')
   }
@@ -182,7 +180,7 @@ function Calendar() {
     const calendarApi = calendarRef.current.getApi();
     calendarApi.changeView('dayGridMonth')
     setCalendarView('dayGridMonth')
-    eventMonthDisplay()
+    // eventMonthDisplay()
     getCaledandarHeight(setCalendarHeight)
     changeHeaderToolbar('dayGridMonth', calendarApi, MonthDropdown)
   }
@@ -243,7 +241,7 @@ function Calendar() {
               }
             }
           }}
-          initialView="dayGridDay"
+          initialView="dayGridMonth"
           firstDay={1}
           headerToolbar={{
             start: "dayGridDay dayGridWeek dayGridMonth",

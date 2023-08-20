@@ -27,45 +27,55 @@ export const changeHeight = (setCalendarHeight) => {
 }
 
 const eventSingleLineDisplay = () => {
-  const eventTitle = document.querySelectorAll('.dashboard-fullCalendar .event-title')
-  const eventDescription = document.querySelectorAll('.dashboard-fullCalendar .event-description')
-  const eventTime = document.querySelectorAll('.dashboard-fullCalendar .event-time')
+  // const eventTitle = document.querySelectorAll('.dashboard-fullCalendar .event-title')
+  // const eventDescription = document.querySelectorAll('.dashboard-fullCalendar .event-description')
+  // const eventTime = document.querySelectorAll('.dashboard-fullCalendar .event-time')
 
-  eventDescription.forEach((event) => {
-    event.classList.remove('col-12')
-    event.classList.add('col-4')
-  })
+  // eventDescription.forEach((event) => {
+  //   event.classList.remove('col-12')
+  //   event.classList.add('col-4')
+  // })
 
-  eventTime.forEach((event) => {
-    event.classList.remove('col-12')
-    event.classList.add('col-4')
-  })
+  // eventTime.forEach((event) => {
+  //   event.classList.remove('col-12')
+  //   event.classList.add('col-6')
+  // })
 
-  eventTitle.forEach((event) => {
-    event.classList.remove('col-12')
-    event.classList.add('col-4')
-  })
+  // eventTitle.forEach((event) => {
+  //   event.classList.remove('col-12')
+  //   event.classList.add('col-6')
+  // })
+
+  const eventContainer = document.querySelectorAll('.event-container');
+  console.log(eventContainer)
+  // eventContainer.classList.remove('flex-column');
+  // eventContainer.classList.add('flex-row');
+
 }
 
 const eventColumnDisplay = () => {
-  const eventTitle = document.querySelectorAll('.dashboard-fullCalendar .event-title')
-  const eventDescription = document.querySelectorAll('.dashboard-fullCalendar .event-description')
-  const eventTime = document.querySelectorAll('.dashboard-fullCalendar .event-time')
+  // const eventTitle = document.querySelectorAll('.event-title')
+  // const eventDescription = document.querySelectorAll('.dashboard-fullCalendar .event-description')
+  // const eventTime = document.querySelectorAll('.event-time')
+  // eventDescription.forEach((event) => {
+  //   event.classList.remove('col-4')
+  //   event.classList.add('col-12')
+  // })
 
-  eventDescription.forEach((event) => {
-    event.classList.remove('col-4')
-    event.classList.add('col-12')
-  })
+  const eventContainer = document.querySelectorAll('.event-container');
+  console.log(eventContainer)
+  // eventContainer.classList.remove('flex-row');
+  // eventContainer.classList.add('flex-column');
 
-  eventTime.forEach((event) => {
-    event.classList.remove('col-4')
-    event.classList.add('col-12')
-  })
+  // eventTime.forEach((event) => {
+  //   event.classList.remove('col-6')
+  //   event.classList.add('col-12')
+  // })
 
-  eventTitle.forEach((event) => {
-    event.classList.remove('col-4')
-    event.classList.add('col-12')
-  })
+  // eventTitle.forEach((event) => {
+  //   event.classList.remove('col-6')
+  //   event.classList.add('col-12')
+  // })
 }
 
 const hideDatePickerCalendar = () => {
@@ -77,31 +87,37 @@ const hideDatePickerCalendar = () => {
   secondary.style.display = 'none'
 }
 
+const showDatePicker = () => {
+  const width = window.innerWidth;
+  const calendar = document.querySelector('.dashboard-fullCalendar')
+
+  if (width > 768){
+    calendar.classList.add('col-md-8')
+    calendar.classList.remove('col-12')
+  } 
+  const secondary = document.querySelector('.secondary-calendar')
+  secondary.style.display = 'block'
+
+}
+
 export const eventDayDisplay = () => {
 
-    const width = window.innerWidth;
-    const calendar = document.querySelector('.dashboard-fullCalendar')
-
-    if (width > 768){
-      calendar.classList.add('col-md-8')
-      calendar.classList.remove('col-12')
-    } 
-    const secondary = document.querySelector('.secondary-calendar')
-    secondary.style.display = 'block'
-  
+    showDatePicker()
     eventSingleLineDisplay()
 }
 
 export  const eventWeekDisplay = () => {
 
     // hideDatePickerCalendar()
-    
+    showDatePicker()
     eventColumnDisplay()
 }
 
 export const eventMonthDisplay = () => {
   hideDatePickerCalendar()
-  eventSingleLineDisplay()
+  eventColumnDisplay()
+
+  // eventSingleLineDisplay()
 }
 
 export const prevNextBtnDisplay = (calendarRef, setCalendarHeight, MonthDropdown) => {
