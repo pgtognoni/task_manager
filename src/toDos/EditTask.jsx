@@ -12,7 +12,7 @@ function EditTask({item, index, getTasks}) {
     }
 
     return (
-        <td className='text-right'>
+        <div className='text-right'>
             <button onClick={() => handleOpenModal()} >
                 <FontAwesomeIcon icon={faPencil} style={{color: '#4e9ed0'}} />
             </button>
@@ -23,7 +23,7 @@ function EditTask({item, index, getTasks}) {
                 index={index} 
                 getTasks={getTasks}
             />
-        </td>
+        </div>
     )
 }
 

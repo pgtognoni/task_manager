@@ -26,12 +26,15 @@ function HomePage() {
             <li>Customise your reminders</li>
             <li>And much more...</li>
           </ul>
-          <h2 className='text-center m-3 p-3 start mx-auto'><Link to='/login'>Start Now</Link></h2>
+          <div className='start mx-auto'>
+            <h2 className='text-center m-3 p-3 mx-auto'><Link to='/login'>Start Now</Link></h2>
+          </div>
         </div>
       </section>
       <section className='section sec-3 p-3 mt-3 mx-auto d-flex justify-content-center align-items-center'>
-        <div className='purple-box'></div>
-        <h2 className='p-3 text-center member'><Link to='/register'>Become a Member</Link></h2>
+        <div className='member-box'>
+          <h2 className='p-3 text-center member m-0'><Link to='/register'>Become a Member</Link></h2>
+        </div>
       </section>
     </div>
   )

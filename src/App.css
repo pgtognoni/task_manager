@@ -5,9 +5,10 @@
   --navbar-bg-color:#0e0246; 
   --navbar-brand-color: #f6fa00;
   --text-white: #f3f3f3;
+  --text-gray: #c1c1c1;
   --box-background: #15266fca;
   --green-bg: rgb(5, 202, 5);
-  --draggable: #a018fb1e;
+  --draggable: #0e8ca587;
   --border-box: #44E5DD;
   --table-background: #111e58ca;
   --linear-gradient: linear-gradient(to right, #f6fa00, #faab00);
@@ -64,6 +65,13 @@ nav .navbar-brand {
   color: var(--navbar-brand-color);
   font-family: 'Lilita One', cursive;
   font-size: 2rem !important;
+  transition: all ease 1s; 
+  cursor: pointer;
+}
+
+nav .navbar-brand:hover {
+  color: var(--orange);
+  transform: scale(1.1);
 }
 
 nav .nav-link {
@@ -78,12 +86,16 @@ nav .navbar-toggler {
 
 .btn-log {
   background-color: var(--navbar-bg-color);
-  color: var(--navbar-brand-color);
   border-radius: 50px;
   font-size: 1rem !important;
   font-weight: 500;
   padding: .5rem 1rem !important;
   border: 2px solid var(--navbar-brand-color);
+}
+
+.btn-log:hover {
+  border: 2px solid var(--orange);
+  color: var(--navbar-brand-color) !important;
 }
 
 @media screen and (max-width: 576px) {
@@ -131,45 +143,73 @@ li::before {
   border-bottom: none;
 }
 
-.gray-box {
-  position: absolute;
-  width: 90%;
-  height: 90%;
-  z-index: -1;
-  background-color: var(--box-background);
-  transform: skew(-5deg);
-}
-
 .sec-2 .start {
-  background-color: var(--green-bg);
   width: 50%;
   transform: skew(-5deg);
-  box-shadow: 5px 5px 0 #c1c1c1;
+  cursor: pointer;
+  position: relative;
+}
+
+.start h2 {
+  background-color: var(--green-bg);
 }
 
 .start a {
   color: var(--navbar-brand-color) !important;
-  text-shadow: 1px 0 0 var(--navbar-bg-color);
+  text-shadow: 1px 0 0 var(--box-background);
 }
 
-.purple-box {
+.start::after {
   position: absolute;
-  height: 100%;
-  width: 90%;
+  content: '';
+  background-color: var(--text-gray);
+  right: -5px;
+  bottom: -5px;
   z-index: -1;
-  transform: skew(-5deg);
-  background: var(--linear-gradient);
-  box-shadow: 5px 5px 0 var(--navbar-brand-color);
+  width: 100%;
+  height: 100%;
 }
 
+.start h2:hover {
+  transform: translate(5px, 5px);
+}
 
+.member-box {
+  position: relative;
+  width: 90%;
+  transform: skew(-5deg);
+  cursor: pointer;
+}
+
+.member-box h2 {
+  background: var(--linear-gradient);
+  font-weight: 600;
+  letter-spacing: 1.2px;
+}
 
 h2.member a {
   color: var(--navbar-bg-color);
   text-shadow: 1px 0 0 var(--navbar-brand-color);
   font-size: 2.5rem;
   width: 80%;
+  margin: 0;
 }
+
+.member-box::after {
+  position: absolute;
+  content: '';
+  background-color: var(--navbar-brand-color);
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+
+.member-box h2:hover {
+  transform: translate(5px, 5px);
+}
+
 
 /* TASK MANAGER */
 
@@ -180,7 +220,6 @@ h2.member a {
 
 .task-manager {
   max-width: 768px;
-  overflow-x: scroll;
 }
 
 .add-new {
@@ -241,6 +280,20 @@ h2.member a {
   font-size: 1.1rem;
 }
 
+.toogle-task button {
+  border: 1px solid var(--text-gray);
+  border-radius: 50px;
+  padding: .3rem 1rem;
+  margin: .2rem;
+  font-size: .9rem;
+  font-weight: 500;
+  background-color: transparent;
+}
+
+.toogle-task button.active {
+  border: 1px solid var(--navbar-brand-color)
+}
+
 .toogle-task th {
   text-align: center;
 }
@@ -259,8 +312,10 @@ h2.member a {
 
 @media screen and (max-width: 430px) {
   
-  .task-text {
+  .task-text, 
+  .task-date {
     font-size: .6rem !important;
+    text-overflow: ellipsis;
   }
 
   .toogle-task {
@@ -269,20 +324,26 @@ h2.member a {
 
 }
 
+.drag-container {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 td[draggable='true'] svg {
-  color: var(--border-box)
+  color: var(--navbar-brand-color)
 }
 
 .drag {
   background-color: var(--draggable);
 }
 
-.task-text {
-  text-overflow: ellipsis;
+.task-text-container {
+  width: 50%;
 }
 
 .moveTask {
   cursor: pointer;
+  transform: scaleY(1);
 }
 
 .text-right {
@@ -298,7 +359,7 @@ td[draggable='true'] svg {
 }
 
 .text-gray {
-  color: #c1c1c1;
+  color: var(--text-gray);
 }
 
 .text-green {

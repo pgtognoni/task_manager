@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { useDispatch, useSelector } from 'react-redux';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import momentPlugin from '@fullcalendar/moment';
@@ -19,9 +20,10 @@ function Calendar() {
     event = {
       title: string,
       start: string/date,
-      description: string,
     }
   */
+
+    const toDos = useSelector(state => state.toDos.toDos)
   
   const calendarRef = useRef(null)
   const profileView = 'userCalendar'
@@ -40,10 +42,16 @@ function Calendar() {
     // USE EFFECT TO FETCH DATA/EVENTS ONLY
     
     const fetchEvents = () => {
+      const events = toDos.map((toDo) => ({
+        title: toDo.task,
+        start: toDo.date
+      }))
+      console.log(toDos, events)
+      setEvents(events)
     }
 
     fetchEvents()
-    setCalendarView('dayGridDay') 
+    setCalendarView('dayGridMonth') 
 
   }, [])
 
@@ -70,10 +78,10 @@ function Calendar() {
     
     window.addEventListener('resize', handleResize);
 
-    // return () => {
-    //   window.removeEventListener('resize', handleResize);
-    //   changeHeight(setCalendarHeight);
-    // };
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      changeHeight(setCalendarHeight);
+    };
 
   }, [calendarHeight])
 
@@ -113,12 +121,6 @@ function Calendar() {
     }
       
   }, []);
-
-  useEffect(() => {
-    // ADD THE HEAD OF THE EVENT ON DAY-GRID-DAY VIEW
-    eventTitleBar(calendarView)
-
-  }, [calendarView])
 
   const handleSelectDate = (date) => {
     //function to set the date in FullCalendar from DATEPICKER

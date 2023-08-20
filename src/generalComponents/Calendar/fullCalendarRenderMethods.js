@@ -12,12 +12,6 @@ export const changeWidth = () => {
 export const getCaledandarHeight = (setCalendarHeight) => {
     //to set footer in the bottom of the page 
     let dashboard = document.getElementsByClassName('dashboard-container')[0];
-    // if (profileView === 'userCalendar') {
-    //   dashboard = document.getElementsByClassName('userCalendar-profile')[0];
-    // } else if (profileView === 'student') {
-    //   dashboard = document.getElementsByClassName('student-profile')[0];
-    // }
-    console.log(dashboard);
     var elementHeight = dashboard.offsetHeight; // Height of the element
     var elementOffsetTop = dashboard.offsetTop; // Distance from the element's top to the top of its offset parent
 
@@ -100,7 +94,7 @@ export const eventDayDisplay = () => {
 
 export  const eventWeekDisplay = () => {
 
-    hideDatePickerCalendar()
+    // hideDatePickerCalendar()
     
     eventColumnDisplay()
 }
@@ -108,39 +102,6 @@ export  const eventWeekDisplay = () => {
 export const eventMonthDisplay = () => {
   hideDatePickerCalendar()
   eventSingleLineDisplay()
-}
-
-export const eventTitleBar = (view) =>{
-
-    if (view === 'dayGridDay') {
-        const tbody = document.querySelector('tbody[role="presentation"]');
-        const firstChild = tbody.firstChild;
-        const titleBar = document.createElement('div');
-        titleBar.classList.add('events-title-bar');
-  
-        const spanElement1 = document.createElement('span');
-        const spanElement2 = document.createElement('span');
-        const spanElement3 = document.createElement('span');
-  
-        // Set content for the <span> elements
-        spanElement1.textContent = 'Lesson Name';
-        spanElement2.textContent = 'Level';
-        spanElement3.textContent = 'Start Time';
-  
-        // Append the <span> elements to the <div>
-        titleBar.appendChild(spanElement1);
-        titleBar.appendChild(spanElement2);
-        titleBar.appendChild(spanElement3);
-  
-        tbody.insertBefore(titleBar, firstChild);
-        
-    } else {
-        const titleBar = document.querySelector('.events-title-bar')
-        if (titleBar) {
-            const tbody = document.querySelector('tbody[role="presentation"]');
-            tbody.removeChild(titleBar);
-        }
-    }
 }
 
 export const prevNextBtnDisplay = (calendarRef, setCalendarHeight, MonthDropdown) => {

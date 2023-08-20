@@ -87,10 +87,11 @@
       align-items: center;
       gap: .5rem;
     }
-  
-    .dashboard-fullCalendar .fc-toolbar-chunk:nth-child(3) {
-      display: none;
+
+    .dashboard-fullCalendar .fc-toolbar-chunk {
+      margin-bottom: .5rem;
     }
+  
   }
   
   .dashboard-fullCalendar .fc-toolbar-chunk:nth-child(3) {
@@ -249,14 +250,7 @@
     color: #fff;
   }
   
-  /* STUDENT */
-  .student.secondary-calendar .react-datepicker__day[aria-selected='true'] {
-    background: #FFDD0D !important;
-    color: #FFA60E !important;
-    border-radius: 50%;
-  }
-  /* TEACHER */
-  .teacher.secondary-calendar .react-datepicker__day[aria-selected='true'] {
+  .secondary-calendar .react-datepicker__day[aria-selected='true'] {
     background: #44E5DD !important;
     color: #170556!important;
     border-radius: 50%;
@@ -272,9 +266,9 @@
   
   @media screen and (max-width: 960px) {
   
-    .secondary-calendar > div {
+    /* .secondary-calendar > div {
       justify-content: flex-start;
-    }
+    } */
   
     .secondary-calendar .react-datepicker__day-name,
     .secondary-calendar .react-datepicker__day,

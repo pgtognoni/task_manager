@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import DeleteTask from './DeleteTask'
 import MarkComplete from './MarkComplete'
 import EditTask from './EditTask'
+import ModalComplete from './ModalComplete'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGripLines } from '@fortawesome/free-solid-svg-icons'
+import { faGripLines, faCheckCircle, faBars } from '@fortawesome/free-solid-svg-icons'
 
 function TaskTemplate(props) {
 
     const { toDo, index, handleDragStart, handleDrop, handleDragOver, handleDragEnter, handleDragLeave } = props;
+
+    const [ modalShow, setModalShow ] = useState(false);
 
     const options = {
         day: "numeric",
@@ -25,18 +28,28 @@ function TaskTemplate(props) {
             onDragLeave={() => handleDragLeave(toDo.id)}
             className='task-text text-white'
         >
-        <MarkComplete item={toDo} index={index} />
-        {toDo.complete === false 
-            ? <td
-                draggable={toDo.complete === false ? 'true' : 'false'} 
-                onDragStart={(e) => handleDragStart(e, index)}             
-                ><FontAwesomeIcon icon={faGripLines} className='moveTask'/></td>
-            : <td></td>
-        }
-          <td className='task-text text-white'>{toDo.task}</td>
-          <td className='task-text text-white'>{toDo.date ? new Date(toDo.date).toLocaleString('en-GB', options) : null}</td>
-          <EditTask item={toDo} index={index} />
-          <DeleteTask id={toDo.id} item={toDo} />
+          <td 
+            colSpan={1} 
+            draggable={toDo.complete === false ? 'true' : 'false'} 
+            onDragStart={(e) => handleDragStart(e, index)}  
+            >
+              <FontAwesomeIcon icon={faBars} className='moveTask'/>
+          </td>
+          <td colSpan={3} className='task-text-container'>
+            <div className='d-flex align-items-center'>
+                <MarkComplete item={toDo} index={index} handleDragStart={handleDragStart} />
+                <div className='task-text text-white'>
+                    {toDo.task}
+                </div>
+            </div>
+            </td>
+          <td colSpan={2} className='task-date text-white'>{toDo.date ? new Date(toDo.date).toLocaleString('en-GB', options) : null}</td>
+          <td colSpan={1} >
+            <div className='d-flex gap-2'>
+                <EditTask item={toDo} index={index} />
+                <DeleteTask id={toDo.id} item={toDo} />
+            </div>
+          </td>
       </tr>
     )
 }

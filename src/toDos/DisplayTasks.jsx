@@ -49,17 +49,23 @@ function DisplayTasks({ pending, completed }) {
   }
 
   return (
-    <div className='m-3 pt-3 task-manager mx-auto table-container'>
+    <div className='m-3 task-manager mx-auto table-container'>
     <Table 
       striped
       hovered
       >
       <TooglePending setShowPending={setShowPending} showPending={showPending} />
       <tbody>
-      <tr className=''>{showPending 
-        ? <><td colSpan={7}><h5 className='text-center text-white'>Pending: <span className='mx-3 text-danger'>{pending.length}</span></h5></td></> 
-        : <><td colSpan={7}><h5 className='text-center text-white'>Completed: <span className='mx-3 text-green'>{completed.length}</span></h5></td></>
-      }</tr>
+      <tr>
+        <td colSpan={7}>
+          <h5 className='text-center text-white'>
+            {showPending 
+            ? <>Pending: <span className='mx-3 text-danger'>{pending.length}</span></>
+            : <>Completed: <span className='mx-3 text-green'>{completed.length}</span></>}
+          </h5>
+        </td>
+      </tr>
+
         {showPending  
           ? pending.map((toDo, index) => {
             return(
