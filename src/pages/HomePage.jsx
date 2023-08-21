@@ -6,7 +6,7 @@ function HomePage() {
     <div className='p-4'>
       <section className='section sec-1 p-3 mx-auto'>
         <div className='section-text'>
-          <p className='intro-1'>Introducing <span className='brand-name mx-1'>Doose</span> 
+          <p className='intro-1'>Introducing <span className='brand-name mx-1'><img src='/DXLogo.svg' alt='DX' /></span> 
           the app designed to help you manage your daily tasks and priorities. <br></br><br></br>
           Keep track of your to-do lists in one place and never miss an appointment or deadline again. <br></br><br></br>
           Ideal for busy professionals, students, or anyone who wants to stay organized.</p>
@@ -14,7 +14,7 @@ function HomePage() {
       </section>
       <section className='section sec-2 p-3 mx-auto'>
         <div className='section-text'>
-          <p>With <span className='brand-name mx-1'>Doose</span> you can:</p>
+          <p>With <span className='brand-name mx-1'><img src='/DXLogo.svg' alt='DX' /></span> you can:</p>
           <ul>
             <li>Add a task to your list</li>
             <li>Set a Date</li>

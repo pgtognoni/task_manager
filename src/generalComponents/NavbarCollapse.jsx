@@ -19,7 +19,9 @@ function NavbarCollapse() {
   return (
     <Navbar collapseOnSelect expand="sm" bg="dark" variant="dark" className='p-2'>
       <div className='container-fluid'>
-        <Navbar.Brand href={currentUser ? "" : "/"}>DOOSE</Navbar.Brand>
+        <Navbar.Brand href={currentUser ? "" : "/"}>
+          <img src='/DXLogo.svg' alt='DX' />
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto d-flex justify-content-between container-fluid">

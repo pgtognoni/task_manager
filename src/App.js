@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { setState } from './reducer/toDosReducer';
+import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route } from 'react-router-dom';
@@ -9,9 +7,19 @@ import NavbarCollapse from './generalComponents/NavbarCollapse';
 import HomePage from './pages/HomePage';
 import LogIn from './pages/LogIn';
 import Register from './pages/Register';
-import UserLogged from './pages/UserLogged';
 import { useAuth } from './context/AuthContext';
 import Calendar from './generalComponents/Calendar/Calendar';
+import Spinner from 'react-bootstrap/Spinner';
+
+function SpinnerComponent() {
+  return (
+    <div className="spinner-container">
+      <Spinner className='spinner-loading' animation="border" role="status" variant='warning'>
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    </div>
+  );
+}
 
 function App() {
   
@@ -30,9 +38,8 @@ function App() {
           <Route path='/calendar' element={<Calendar />} />
         </>
         }
-        <Route path='/userLogged' element={<UserLogged />} />
         
-        <Route path="*" element={<h1>Not Found...</h1>} />
+        <Route path="*" element={<SpinnerComponent />} />
       </Routes>
     </div>
   );

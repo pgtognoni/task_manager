@@ -18,8 +18,9 @@ function ModalDelete (props) {
 
     const handleDelete = async (id, item) => {
         dispatch(deleteToDo(id))
-        const newArray = toDos.filter(toDo => toDo.id !== item.id)
+        const newArray = toDos.filter(toDo => toDo.id !== id)
         setDoc(docRef, {toDos: newArray})
+        props.onHide()
     }
 
   return (
@@ -36,7 +37,7 @@ function ModalDelete (props) {
       </Modal.Header>
       <Modal.Footer>
         <Button onClick={props.onHide} variant="outline-danger">No</Button>
-        <Button className='btn-save' onClick={(e) => handleDelete(props.id, props.item)}>
+        <Button className='btn-save' onClick={(e) => handleDelete(props.id)}>
            Yes
         </Button>
       </Modal.Footer>

@@ -4,6 +4,11 @@
   margin: auto;
 }
 
+.dashboard-container .dashboard-fullCalendar {
+  background-color: var(--table-background);
+  border-radius: 25px;
+}
+
 @media screen and (max-width: 1299px) {
     .dashboard-container {
       gap: 15px;
@@ -399,24 +404,11 @@
     cursor: pointer;
   }
     
-  .month-container > div {
-    min-width: 100px;
-  }
-
   .dayGrid {
     display: flex;
     justify-content: space-around;
     width: 100%;
   }
-
-  /* .week-container,
-  .month-container {
-    padding: .5rem 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-  } */
 
   .event-container.completed {
     background-color: #d6f9d6e7;
@@ -435,14 +427,21 @@
     text-align: center;
   }
 
-  @media screen and (max-width: 1020px) {
-    
-    .week-container .event-title,
-    .month-container .event-title {
-      flex-direction: column;
-    }
+  .month-container,
+  .week-container {
+    width: 100%;
   }
 
+  .week-container .event-title,
+  .month-container .event-title {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .week-container .event-title p,
+  .month-container .event-title p {
+    width: 100%;
+  }
   
   .week-container p {
     text-align: center;

@@ -26,6 +26,7 @@
 body {
   background-color: var(--body-bg) !important;
   height: 100vh;
+  position: relative;
 }
 
 button {
@@ -52,6 +53,14 @@ a {
   padding-top: 3rem;
 }
 
+.spinner-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  min-height: 100vh; 
+  min-width: 100vw;
+}
+
 /* NAVBAR */
 
 nav {
@@ -68,6 +77,8 @@ nav .navbar-brand {
   font-size: 2rem !important;
   transition: all ease 1s; 
   cursor: pointer;
+  transform: scaleX(1.2);
+  margin-left: 1rem;
 }
 
 nav .navbar-brand:hover {
@@ -109,6 +120,11 @@ nav .navbar-toggler {
   .btn-log {
     border: none;
     padding: .5rem 0 !important;
+  }
+
+  .btn-log:hover {
+    border: none !important;
+    color: var(--navbar-brand-color) !important;
   }
 }
 
@@ -429,4 +445,15 @@ td[draggable='true'] svg {
 
 .btn-save {
   background-color: var(--green-bg) !important;
+}
+
+.modal-footer-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.footer-btn-actions-container {
+  display: flex;
+  gap: 1rem;
 }
