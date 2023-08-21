@@ -231,12 +231,11 @@ h2.member a {
 
 .modal-content,
 .form-container {
-  margin: auto;
   background-color: var(--box-background) !important;
   border-radius: 25px;
   border: 2px solid var(--border-box) !important;
   margin-top: 2rem !important;
-  max-width: 760px;
+  max-width: 720px !important;
   margin-left: .5rem !important;
   margin-right: .5rem !important;
   color: var(--text-white) !important;

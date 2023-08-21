@@ -74,7 +74,7 @@ function LoginForm() {
 
   return (
     <div className='container'>
-      <div className='row'>
+      <div className='row justify-content-center'>
       <form onSubmit={(e) => handleFormSubmit(e)} className='col container form-container'>
         <div className='mx-auto'>
           <div className='col-12 col-sm-6 form-group mx-auto'>
