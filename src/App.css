@@ -13,6 +13,7 @@
   --table-background: #111e58ca;
   --linear-gradient: linear-gradient(to right, #f6fa00, #faab00);
   --orange: #faab00;
+  --body-bg: #040a52;
 }
 
 * {
@@ -23,7 +24,7 @@
 }
 
 body {
-  background-color: #040a52 !important;
+  background-color: var(--body-bg) !important;
   height: 100vh;
 }
 
@@ -210,6 +211,52 @@ h2.member a {
   transform: translate(5px, 5px);
 }
 
+/* LOG IN FORM */
+
+.modal-content,
+.form-container {
+  margin: auto;
+  background-color: var(--box-background) !important;
+  border-radius: 25px;
+  border: 2px solid var(--border-box) !important;
+  margin-top: 2rem !important;
+  max-width: 760px;
+  margin-left: .5rem !important;
+  margin-right: .5rem !important;
+  color: var(--text-white) !important;
+}
+
+.form-container {
+  padding-top: 1rem;
+}
+
+input.email, 
+input.password,
+input.email:focus,
+input.password:focus,
+input.email:-webkit-autofill,
+input.password:-webkit-autofill,
+input.email:-webkit-autofill:hover,
+input.password:-webkit-autofill:hover,
+input.email:-webkit-autofill:focus,
+input.password:-webkit-autofill:focus,
+input.email:-webkit-autofill:active,
+input.password:-webkit-autofill:active {
+  -webkit-appearance: none !important;
+  background-color: var(--body-bg) !important;
+  border: 1px solid var(--border-box);
+  color: var(--text-white) !important;
+  -webkit-text-fill-color: var(--text-white) !important;
+  -webkit-box-shadow: 0 0 0px 1000px var(--body-bg) inset;
+}
+
+@media screen and (max-width: 576px) {
+
+  .form-container .btn-log {
+    border: 2px solid var(--navbar-brand-color);
+    padding: .5rem 1rem !important;
+  }
+}
 
 /* TASK MANAGER */
 
@@ -364,4 +411,22 @@ td[draggable='true'] svg {
 
 .text-green {
   color: var(--green-bg);
+}
+
+.text-orange {
+  color: var(--orange);
+}
+
+/* MODAL */
+
+.modal-header {
+  border-bottom: none !important;;
+}
+
+.modal-footer {
+  border-top: none !important;
+}
+
+.btn-save {
+  background-color: var(--green-bg) !important;
 }

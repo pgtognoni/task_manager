@@ -36,7 +36,7 @@ function ModalDelete (props) {
       </Modal.Header>
       <Modal.Footer>
         <Button onClick={props.onHide} variant="outline-danger">No</Button>
-        <Button variant="success" onClick={(e) => handleDelete(props.id, props.item)}>
+        <Button className='btn-save' onClick={(e) => handleDelete(props.id, props.item)}>
            Yes
         </Button>
       </Modal.Footer>

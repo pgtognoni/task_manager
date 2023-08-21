@@ -1,29 +1,32 @@
 import React, { useState, useEffect, useRef } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import momentPlugin from '@fullcalendar/moment';
 import interactionPlugin from '@fullcalendar/interaction';
 import MonthDropdown from './month';
 import EventFullCalendar from './EventFullCalendar';
+import { setEventId } from '../../reducer/toDosReducer';
 import { 
   changeWidth, changeHeight, 
   getCaledandarHeight, prevNextBtnDisplay, changeHeaderToolbar } from './fullCalendarRenderMethods';
 import './fullCalendar.css';
+import ModalEdit from '../../toDos/ModalEdit';
 
 function Calendar() {
 
-    const stateEvents = useSelector(state => state.toDos.events)
-  
+  const stateEvents = useSelector(state => state.toDos.events)
   const calendarRef = useRef(null)
+  const dispatch = useDispatch()
   
   const [ events, setEvents ] = useState([]);
   const [ selectedDate, setSelectedDate ] = useState(null);
-  const [ calendarView, setCalendarView ] = useState('dayGridMonth');
+  const [ calendarView, setCalendarView ] = useState('');
   const [ calendarHeight, setCalendarHeight ] = useState('');
-  
+  const [ modalShow, setModalShow ] = useState(false);
+
   const fetchEvents = () => {
     if (stateEvents) setEvents(stateEvents)
   }
@@ -33,7 +36,7 @@ function Calendar() {
   
 
     fetchEvents()
-    setCalendarView('dayGridMonth') 
+    if (!calendarView) setCalendarView('dayGridMonth') 
 
   }, [stateEvents])
 
@@ -114,12 +117,20 @@ function Calendar() {
   const handleEventClick = (event) => {
         // CHANGE THE VIEW WHEN EVENT IS CLICKED
     const date = event.event.start
+    const id = event.event.id
     const calendar = calendarRef.current.getApi()
+    const viewType = calendar.view.type
 
-    calendar.changeView('dayGridDay', date)
-    setCalendarView('dayGridDay')
-    setSelectedDate(new Date(date))
-    handleDayGridDayClick()
+    if (viewType && viewType === 'dayGridDay') {
+      setModalShow(true)
+      dispatch(setEventId(id))
+    } else {
+        calendar.changeView('dayGridDay', date)
+        setCalendarView('dayGridDay')
+        setSelectedDate(new Date(date))
+        handleDayGridDayClick()
+    }
+
   }
 
   const handleDateClick = (info) => {
@@ -229,6 +240,11 @@ function Calendar() {
           />      
       </div>
     </div>
+    <ModalEdit
+      show={modalShow} 
+      onHide={() => setModalShow(false)}
+      view='calendar'
+    />
     </div>
 	);
 };

@@ -21,7 +21,6 @@ function EditTask({item, index, getTasks}) {
                 onHide={() => setModalShow(false)} 
                 item={item}  
                 index={index} 
-                getTasks={getTasks}
             />
         </div>
     )

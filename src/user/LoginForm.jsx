@@ -75,11 +75,11 @@ function LoginForm() {
   return (
     <div className='container'>
       <div className='row'>
-      <form onSubmit={(e) => handleFormSubmit(e)} className='col container'>
+      <form onSubmit={(e) => handleFormSubmit(e)} className='col container form-container'>
         <div className='mx-auto'>
-          <div className='col-xs-12 col-6 form-group mt-5 mx-auto'>
+          <div className='col-12 col-sm-6 form-group mx-auto'>
             <label htmlFor="email">Email</label>
-            <input className='form-control mt-2' 
+            <input className='form-control mt-2 email' 
               type="email" id="email" 
               placeholder='Email'
               onChange={(e) => setValue(e.target.value)} 
@@ -90,9 +90,9 @@ function LoginForm() {
               />
             {errors.email && <p>Please enter a valid email address.</p>}
           </div>
-          <div className='col-xs-12 col-6 form-group mt-5 mx-auto'>
+          <div className='col-12 col-sm-6 form-group mt-5 mx-auto'>
             <label htmlFor="password">Password</label>
-            <input className='form-control mt-2'
+            <input className='form-control mt-2 password'
              type="password" 
              id="password" 
              onChange={(e) => setValue(e.target.value)}
@@ -105,43 +105,43 @@ function LoginForm() {
              />
           </div>
           {errors.password  && (
-            <p className='col-xs-12 col-6 m-0 mt-1 mx-auto' >
+            <p className='col-12 col-sm-6 m-0 mt-1 mx-auto' >
               Please enter a valid password
             </p>
             )}
           {location === '/register' 
             ? (<>
-            <p className='col-xs-12 col-6 m-0 mx-auto' >
+            <p className='col-12 col-sm-6 m-0 mx-auto' >
               Password must be:
             </p>
-            <ul className='col-xs-12 col-6 m-0 mx-auto'>
+            <ul className='col-12 col-sm-6 m-0 mx-auto'>
                 <li className={/^.{8,}$/.test(password) ? 'text-green' : 'text-gray'}>8 characters or more</li>
                 <li className={/[A-Z]/.test(password) ? 'text-green' : 'text-gray'}>1 uppercase letter</li>
                 <li className={/[a-z]/.test(password) ? 'text-green' : 'text-gray'}>1 lowercase letter</li>
                 <li className={/[\d]/.test(password) ? 'text-green' : 'text-gray'}>1 number</li>
                 <li className={/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password) ? 'text-green' : 'text-gray'}>1 special character</li>
             </ul>
-            <div className='col-xs-12 col-6 form-group mt-5 mx-auto'>
+            <div className='col-12 col-sm-6 form-group mt-5 mx-auto'>
                 <label htmlFor="password">Confirm Password</label>
-                <input className='form-control mt-2' type="password" id="confirm-password" value={confirmPassword} onChange={(e) => handleConfirmPasswordChange(e)} placeholder='Confirm password' />
+                <input className='form-control mt-2 password' type="password" id="confirm-password" value={confirmPassword} onChange={(e) => handleConfirmPasswordChange(e)} placeholder='Confirm password' />
                 {!passwordMatch && <p>Passwords must match.</p>}
             </div>
             </>)
             : null}  
         </div>
-        <div className='d-flex flex-column flex-sm-row mt-4 gap-3 align-items-center justify-content-center'>
-          <button type="submit" className='btn btn-send btn-primary'>{location === '/register' ? 'Register' : 'Log In'}</button>
+        <div className='d-flex flex-column flex-sm-row mt-4 mb-4 gap-3 align-items-center justify-content-center'>
+          <button type="submit" className='text-white btn-log'>{location === '/register' ? 'Register' : 'Log In'}</button>
           {location !== '/login' 
           ? (
             <div className='d-flex align-items-center gap-2'>
-                <span>Have an account?</span>
-                <Link to='/login'>Log In</Link>
+                <span className='text-white'>Have an account?</span>
+                <Link to='/login' className='text-orange'>Log In</Link>
             </div>
           )
           : (
             <div className='d-flex align-items-center gap-2'>
-                <span>Don't have an account?</span>
-                <Link to='/register'>Sign Up</Link>
+                <span className='text-white'>Don't have an account?</span>
+                <Link to='/register' className='text-orange'>Sign Up</Link>
             </div>
           )}
         </div>

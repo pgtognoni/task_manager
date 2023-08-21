@@ -26,6 +26,8 @@ function TaskManager () {
 
     const newPending = toDoList?.filter(item => item.complete === false)
     const newCompleted = toDoList?.filter(item => item.complete === true)
+    
+    console.log(toDoList)
 
     setPending(newPending)
     setCompleted(newCompleted)

@@ -54,7 +54,7 @@ function ModalComplete(props) {
           No
         </Button>
         <Button 
-          variant="success" 
+          className='btn-save' 
           onClick={(e) => handleClose(e, props.item)}>
            Yes
         </Button>
