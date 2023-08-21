@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import momentPlugin from '@fullcalendar/moment';
@@ -9,35 +9,21 @@ import interactionPlugin from '@fullcalendar/interaction';
 import MonthDropdown from './month';
 import EventFullCalendar from './EventFullCalendar';
 import { 
-  formatDate, changeWidth, changeHeight, eventTitleBar, 
-  getCaledandarHeight, eventDayDisplay, eventWeekDisplay, 
-  eventMonthDisplay, prevNextBtnDisplay, changeHeaderToolbar } from './fullCalendarRenderMethods';
+  changeWidth, changeHeight, 
+  getCaledandarHeight, prevNextBtnDisplay, changeHeaderToolbar } from './fullCalendarRenderMethods';
 import './fullCalendar.css';
 
 function Calendar() {
 
-  /*
-    event = {
-      title: string,
-      start: string/date,
-    }
-  */
-
     const stateEvents = useSelector(state => state.toDos.events)
   
   const calendarRef = useRef(null)
-  const profileView = 'userCalendar'
+  
   const [ events, setEvents ] = useState([]);
   const [ selectedDate, setSelectedDate ] = useState(null);
   const [ calendarView, setCalendarView ] = useState('dayGridMonth');
   const [ calendarHeight, setCalendarHeight ] = useState('');
-  const [ seeEventDetails, setSeeEventDetails ] = useState({
-    showDetails: false,
-    eventId: '',
-    event: {},
-    date: ''
-  })
-
+  
   const fetchEvents = () => {
     if (stateEvents) setEvents(stateEvents)
   }
@@ -129,25 +115,11 @@ function Calendar() {
         // CHANGE THE VIEW WHEN EVENT IS CLICKED
     const date = event.event.start
     const calendar = calendarRef.current.getApi()
-    const viewType = calendar.view.type
-    const currentDate = calendar.getDate();
 
-    if (profileView === 'teacher' && viewType && viewType === 'dayGridDay') {
-      console.log(event.event.id)  
-      setSeeEventDetails({
-            showDetails: true,
-            eventId: event.event.id,
-            event: event,
-            date: formatDate(currentDate)
-        })
-        const calendarContainer = document.getElementsByClassName('dashboard-container')
-        calendarContainer[0].style.display = 'none';
-    } else {
-        calendar.changeView('dayGridDay', date)
-        setCalendarView('dayGridDay')
-        setSelectedDate(new Date(date))
-        handleDayGridDayClick()
-    }
+    calendar.changeView('dayGridDay', date)
+    setCalendarView('dayGridDay')
+    setSelectedDate(new Date(date))
+    handleDayGridDayClick()
   }
 
   const handleDateClick = (info) => {
@@ -162,7 +134,6 @@ function Calendar() {
     const calendarApi = calendarRef.current.getApi();
     calendarApi.changeView('dayGridDay')
     setCalendarView('dayGridDay')
-    // eventDayDisplay()
     getCaledandarHeight(setCalendarHeight)
     changeHeaderToolbar('dayGridDay')
   }
@@ -171,7 +142,6 @@ function Calendar() {
     const calendarApi = calendarRef.current.getApi();
     calendarApi.changeView('dayGridWeek')
     setCalendarView('dayGridWeek')
-    // eventWeekDisplay()
     getCaledandarHeight(setCalendarHeight)
     changeHeaderToolbar('dayGridWeek')
   }
@@ -180,7 +150,6 @@ function Calendar() {
     const calendarApi = calendarRef.current.getApi();
     calendarApi.changeView('dayGridMonth')
     setCalendarView('dayGridMonth')
-    // eventMonthDisplay()
     getCaledandarHeight(setCalendarHeight)
     changeHeaderToolbar('dayGridMonth', calendarApi, MonthDropdown)
   }
@@ -192,26 +161,10 @@ function Calendar() {
     prevNextBtnDisplay(calendarRef, setCalendarHeight, MonthDropdown)
   };
 
-  const handleGoBackClicked = () => {
-
-    const calendar = document.getElementsByClassName('dashboard-container')
-    calendar[0].style.display = 'flex';
-
-    setSeeEventDetails({
-        showDetails: false,
-        eventId: '',
-        event: {},
-        date: ''
-    })
-    getCaledandarHeight(setCalendarHeight)
-
-  }
-
-
 	return (
     <div className='userCalendar-container' id='dashboard-container'>
     <div className='row flex-wrap-reverse dashboard-container flex-md-nowrap' >
-      <div className={`col-12 col-md-8 dashboard-fullCalendar ${profileView}`}>
+      <div className={`col-12 col-md-8 dashboard-fullCalendar userCalendar`}>
         <FullCalendar
           ref={calendarRef}
           selectable={true}

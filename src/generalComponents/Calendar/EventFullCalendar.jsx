@@ -1,6 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckCircle,faCircleXmark, faBars } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle,faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 
 function EventFullCalendar({ info, view }) {
 

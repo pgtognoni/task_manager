@@ -26,112 +26,15 @@ export const changeHeight = (setCalendarHeight) => {
     body.style.height = height + 100 + 'px';
 }
 
-const eventSingleLineDisplay = () => {
-  // const eventTitle = document.querySelectorAll('.dashboard-fullCalendar .event-title')
-  // const eventDescription = document.querySelectorAll('.dashboard-fullCalendar .event-description')
-  // const eventTime = document.querySelectorAll('.dashboard-fullCalendar .event-time')
-
-  // eventDescription.forEach((event) => {
-  //   event.classList.remove('col-12')
-  //   event.classList.add('col-4')
-  // })
-
-  // eventTime.forEach((event) => {
-  //   event.classList.remove('col-12')
-  //   event.classList.add('col-6')
-  // })
-
-  // eventTitle.forEach((event) => {
-  //   event.classList.remove('col-12')
-  //   event.classList.add('col-6')
-  // })
-
-  const eventContainer = document.querySelectorAll('.event-container');
-  console.log(eventContainer)
-  // eventContainer.classList.remove('flex-column');
-  // eventContainer.classList.add('flex-row');
-
-}
-
-const eventColumnDisplay = () => {
-  // const eventTitle = document.querySelectorAll('.event-title')
-  // const eventDescription = document.querySelectorAll('.dashboard-fullCalendar .event-description')
-  // const eventTime = document.querySelectorAll('.event-time')
-  // eventDescription.forEach((event) => {
-  //   event.classList.remove('col-4')
-  //   event.classList.add('col-12')
-  // })
-
-  const eventContainer = document.querySelectorAll('.event-container');
-  console.log(eventContainer)
-  // eventContainer.classList.remove('flex-row');
-  // eventContainer.classList.add('flex-column');
-
-  // eventTime.forEach((event) => {
-  //   event.classList.remove('col-6')
-  //   event.classList.add('col-12')
-  // })
-
-  // eventTitle.forEach((event) => {
-  //   event.classList.remove('col-6')
-  //   event.classList.add('col-12')
-  // })
-}
-
-const hideDatePickerCalendar = () => {
-  const calendar = document.querySelector('.dashboard-fullCalendar')
-  calendar.classList.add('col-12')
-  calendar.classList.remove('col-md-8')
-  
-  const secondary = document.querySelector('.secondary-calendar')
-  secondary.style.display = 'none'
-}
-
-const showDatePicker = () => {
-  const width = window.innerWidth;
-  const calendar = document.querySelector('.dashboard-fullCalendar')
-
-  if (width > 768){
-    calendar.classList.add('col-md-8')
-    calendar.classList.remove('col-12')
-  } 
-  const secondary = document.querySelector('.secondary-calendar')
-  secondary.style.display = 'block'
-
-}
-
-export const eventDayDisplay = () => {
-
-    showDatePicker()
-    eventSingleLineDisplay()
-}
-
-export  const eventWeekDisplay = () => {
-
-    // hideDatePickerCalendar()
-    showDatePicker()
-    eventColumnDisplay()
-}
-
-export const eventMonthDisplay = () => {
-  hideDatePickerCalendar()
-  eventColumnDisplay()
-
-  // eventSingleLineDisplay()
-}
-
 export const prevNextBtnDisplay = (calendarRef, setCalendarHeight, MonthDropdown) => {
 
   const calendar = calendarRef.current.getApi()
     
   if (calendar.view.type === 'dayGridMonth') {
-    eventMonthDisplay()
     changeHeaderToolbar('dayGridMonth', calendar, MonthDropdown)
   } else if (calendar.view.type === 'dayGridWeek') {
-    eventWeekDisplay()
     changeHeaderToolbar('dayGridWeek')
   } else {
-    eventDayDisplay()
     changeHeaderToolbar('dayGridDay')
   }
   getCaledandarHeight(setCalendarHeight)
@@ -157,16 +60,3 @@ export const changeHeaderToolbar = (calendarView, calendarApi, MonthDropdown) =>
       button.innerHTML = currentMonth;
     }
 }
-
-export const formatDate = (date) => {
-
-    const originalDate = new Date(date);
-
-    const options = {
-        day: "2-digit",
-        month: "long", 
-        year: "2-digit"
-      };
-      
-      return new Intl.DateTimeFormat("en-GB", options).format(originalDate);
-  }
